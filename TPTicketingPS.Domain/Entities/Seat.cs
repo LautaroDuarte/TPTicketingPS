@@ -1,9 +1,5 @@
-﻿using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TPTicketingPS.Domain.Enums;
+
 
 namespace TPTicketingPS.Domain.Entities;
 
@@ -22,6 +18,8 @@ public class Seat
 
     public Guid? CurrentReservationId { get; private set; }
 
+    public int Version { get; private set; }
+
     public Seat(int sectorId, string rowIdentifier, int seatNumber)
     {
         Id = Guid.NewGuid();
@@ -35,7 +33,7 @@ public class Seat
     public void Reserve(Guid reservationId)
     {
         if (Status != SeatStatus.Available)
-            throw new InvalidOperationException("Seat is not available");
+            throw new InvalidOperationException($"Seat {Id} is not available (current status: {Status}).");
 
         Status = SeatStatus.Reserved;
         CurrentReservationId = reservationId;
@@ -44,7 +42,7 @@ public class Seat
     public void Release()
     {
         if (Status == SeatStatus.Sold)
-            throw new InvalidOperationException("Sold seat cannot be released");
+            throw new InvalidOperationException("Sold seat cannot be released.");
 
         Status = SeatStatus.Available;
         CurrentReservationId = null;

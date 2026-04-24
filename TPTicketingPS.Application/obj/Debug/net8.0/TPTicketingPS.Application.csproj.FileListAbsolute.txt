@@ -21,3 +21,19 @@ C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\ne
 C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\refint\TPTicketingPS.Application.dll
 C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.pdb
 C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\ref\TPTicketingPS.Application.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.deps.json
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.pdb
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Domain.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Domain.pdb
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.csproj.AssemblyReference.cache
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfoInputs.cache
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfo.cs
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.csproj.CoreCompileInputs.cache
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.sourcelink.json
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicket.5D8766ED.Up2Date
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\refint\TPTicketingPS.Application.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.pdb
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\ref\TPTicketingPS.Application.dll

@@ -1,9 +1,5 @@
 ﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TPTicketingPS.Domain.Entities;
 
@@ -19,14 +15,17 @@ public class Event : BaseEntity
 
     public string? Description { get; private set; }
 
-    public int MaxReservationsPerUser { get; private set; }
+    public int MaxReservationsPerUser { get; private set; } = 3; //default value, se puede cambiar
 
     // navegación
     public List<Sector> Sectors { get; private set; } = new();
 
     // constructor para crear eventos válidos
-    public Event(string name, DateTime eventDate, string venue, string? description, int maxReservationsPerUser)
+    public Event(string name, DateTime eventDate, string venue, string? description = null, int maxReservationsPerUser = 3)
     {
+        if (maxReservationsPerUser < 1)
+            throw new ArgumentException("Max reservations must be at least 1.", nameof(maxReservationsPerUser));
+
         Name = name;
         EventDate = eventDate;
         Venue = venue;
@@ -38,15 +37,8 @@ public class Event : BaseEntity
     private Event() { }
 
     // comportamiento simple (opcional pero correcto)
-    public void ChangeStatus(string status)
-    {
-        Status = status;
-    }
-
-    public void UpdateDescription(string description)
-    {
-        Description = description;
-    }
+    public void ChangeStatus(string status) => Status = status;
+    public void UpdateDescription(string description) => Description = description;
 
     public void UpdateMaxReservationsPerUser(int max)
     {

@@ -21,3 +21,15 @@ C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\
 C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\refint\TPTicketingPS.Domain.dll
 C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.pdb
 C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\ref\TPTicketingPS.Domain.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\bin\Debug\net8.0\TPTicketingPS.Domain.deps.json
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\bin\Debug\net8.0\TPTicketingPS.Domain.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\bin\Debug\net8.0\TPTicketingPS.Domain.pdb
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.AssemblyInfoInputs.cache
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.AssemblyInfo.cs
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.sourcelink.json
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\refint\TPTicketingPS.Domain.dll
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.pdb
+C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\ref\TPTicketingPS.Domain.dll

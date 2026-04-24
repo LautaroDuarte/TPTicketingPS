@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.26" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TPTicketingPS.Domain\TPTicketingPS.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
