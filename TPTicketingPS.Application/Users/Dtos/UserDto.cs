@@ -7,8 +7,3 @@ public sealed record UserDto(
     string? PhoneNumber,
     bool IsActive,
     DateTime CreatedAt);
-
-public sealed record CreateUserRequest(
-    string Name,
-    string Email,
-    string? PhoneNumber);

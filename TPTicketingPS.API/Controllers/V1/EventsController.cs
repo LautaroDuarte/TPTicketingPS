@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using TPTicketingPS.Application.Events;
 
-namespace TPTicketingPS.Controllers
+namespace TPTicketingPS.API.Controllers.V1
 {
-    [Route("api/[controller]")]
+   
     [ApiController]
+    [Route("api/v1/events")]
+    [Produces("application/json")]
     public class EventsController : ControllerBase
     {
         private readonly IGetEvents _getEvents;
@@ -16,6 +18,7 @@ namespace TPTicketingPS.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetEvents()
         {
             var result = _getEvents.Execute();

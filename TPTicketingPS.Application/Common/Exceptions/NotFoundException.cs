@@ -1,8 +1,17 @@
 ﻿namespace TPTicketingPS.Application.Common.Exceptions;
 
-public class NotFoundException(string resource, object key)
-    : Exception($"{resource} con id '{key}' no fue encontrado.")
+/// <summary>
+/// Recurso solicitado no existe en la DB. Se traduce a 404 Not Found.
+/// </summary>
+public class NotFoundException : Exception
 {
-    public string Resource { get; } = resource;
-    public object Key { get; } = key;
+    public string Resource { get; }
+    public object Key { get; }
+
+    public NotFoundException(string resource, object key)
+        : base($"{resource} con id '{key}' no fue encontrado.")
+    {
+        Resource = resource;
+        Key = key;
+    }
 }
