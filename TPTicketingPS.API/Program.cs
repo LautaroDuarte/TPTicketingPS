@@ -1,7 +1,10 @@
-﻿using TPTicketingPS.Application.Events;
-using TPTicketingPS.Application;
-using TPTicketingPS.Infrastructure;
+﻿using TPTicketingPS.API.Auth;
 using TPTicketingPS.API.Middleware;
+using TPTicketingPS.Application;
+using TPTicketingPS.Application.Common.Interfaces;
+using TPTicketingPS.Application.Events;
+using TPTicketingPS.Infrastructure;
+using TPTicketingPS.API.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,14 +13,35 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    options.SwaggerDoc("v1", new() { Title = "Ticketing API", Version = "v1" });
+
+    options.AddSecurityDefinition("UserId", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
-        Title = "Ticketing API",
-        Version = "v1",
-        Description = "API REST para gestión de eventos, reservas y pagos."
+        Name = "X-User-Id",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+        Description = "ID del usuario (provisional hasta implementar auth)."
+    });
+
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "UserId"
+                }
+            },
+            Array.Empty<string>()
+        }
     });
 });
 
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 
 // Capas
 builder.Services.AddApplication();

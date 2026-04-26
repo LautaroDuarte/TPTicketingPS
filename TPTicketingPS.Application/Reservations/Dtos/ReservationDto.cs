@@ -17,7 +17,3 @@ public sealed record ReservationItemDto(
     int SeatNumber,
     string SectorName,
     decimal UnitPrice);
-
-public sealed record CreateReservationRequest(
-    int EventId,
-    IReadOnlyCollection<Guid> SeatIds);

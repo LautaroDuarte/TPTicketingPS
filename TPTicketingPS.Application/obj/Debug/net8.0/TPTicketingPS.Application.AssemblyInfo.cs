@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TPTicketingPS.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+faef012965e54034cab80b615a2d564a6bc1f1b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e4c0ea7e257c71fa986d0a0132cef7a4b04caf0")]
 [assembly: System.Reflection.AssemblyProductAttribute("TPTicketingPS.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TPTicketingPS.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

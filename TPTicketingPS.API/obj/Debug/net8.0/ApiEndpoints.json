@@ -16,6 +16,51 @@
     ]
   },
   {
+    "ContainingType": "TPTicketingPS.API.Controllers.V1.ReservationsController",
+    "Method": "Create",
+    "RelativePath": "api/v1/reservations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "TPTicketingPS.Application.Reservations.UseCases.CreateReservation.CreateReservationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TPTicketingPS.Application.Reservations.Dtos.ReservationDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 201
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 409
+      }
+    ]
+  },
+  {
     "ContainingType": "TPTicketingPS.API.Controllers.V1.UsersController",
     "Method": "Create",
     "RelativePath": "api/v1/users",

@@ -1,8 +1,8 @@
 ﻿namespace TPTicketingPS.Application.Common.Interfaces;
 
 /// <summary>
-/// Lee el id del usuario del header X-User-Id.
-/// Centralizamos acá por ahora
+/// Acceso al usuario que dispara la operación actual.
+/// Implementación leerá el header X-User-Id mientras no haya auth real.
 /// </summary>
 public interface ICurrentUser
 {
