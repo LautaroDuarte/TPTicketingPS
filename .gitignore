@@ -1,18 +1,16 @@
-# Archivos de Visual Studio
-.vs/
-*.user
-*.suo
-
-# Compilación
+# Build results
 bin/
 obj/
 
-# Logs
-*.log
+# Visual Studio
+.vs/
 
-# Archivos temporales
-*.tmp
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# Rider / VS Code (opcional)
-.idea/
-.vscode/
+# OS files
+.DS_Store
+Thumbs.db
