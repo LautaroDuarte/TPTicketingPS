@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj": {}
+    "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj": {
+    "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
+        "projectUniqueName": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
         "projectName": "TPTicketingPS.Application",
-        "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
-        "packagesPath": "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\obj\\",
+        "projectPath": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
+        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
+        "outputPath": "C:\\TPTicketingPS\\TPTicketingPS.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\programs files\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rodrigo Godoy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj": {
-                "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj"
+              "C:\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj": {
+                "projectPath": "C:\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj"
               }
             }
           }
@@ -79,24 +79,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj": {
+    "C:\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj",
+        "projectUniqueName": "C:\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj",
         "projectName": "TPTicketingPS.Domain",
-        "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj",
-        "packagesPath": "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\obj\\",
+        "projectPath": "C:\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj",
+        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
+        "outputPath": "C:\\TPTicketingPS\\TPTicketingPS.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\programs files\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rodrigo Godoy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -144,24 +144,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj": {
+    "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
+        "projectUniqueName": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
         "projectName": "TPTicketingPS.Infrastructure",
-        "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Infrastructure\\obj\\",
+        "projectPath": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\lauta\\.nuget\\packages\\",
+        "outputPath": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\programs files\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Rodrigo Godoy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lauta\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -176,8 +176,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj": {
-                "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj"
+              "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj": {
+                "projectPath": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj"
               }
             }
           }
@@ -229,7 +229,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

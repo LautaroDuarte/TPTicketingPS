@@ -14,3 +14,19 @@ C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketi
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\refint\TPTicketingPS.Application.dll
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.pdb
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\ref\TPTicketingPS.Application.dll
+C:\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.deps.json
+C:\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.dll
+C:\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.pdb
+C:\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Domain.dll
+C:\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Domain.pdb
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.csproj.AssemblyReference.cache
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfoInputs.cache
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfo.cs
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.csproj.CoreCompileInputs.cache
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.sourcelink.json
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicket.5D8766ED.Up2Date
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.dll
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\refint\TPTicketingPS.Application.dll
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.pdb
+C:\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\ref\TPTicketingPS.Application.dll

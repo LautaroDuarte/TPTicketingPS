@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TPTicketingPS.Application.Events;
+using TPTicketingPS.Application.Events.Dtos;
 
 namespace TPTicketingPS.API.Controllers.V1
 {
-   
     [ApiController]
     [Route("api/v1/events")]
     [Produces("application/json")]
@@ -19,9 +19,9 @@ namespace TPTicketingPS.API.Controllers.V1
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetEvents()
+        public async Task<IActionResult> GetEvents([FromQuery] EventQueryParameters parameters)
         {
-            var result = _getEvents.Execute();
+            var result = await _getEvents.ExecuteAsync(parameters);
             return Ok(result);
         }
     }

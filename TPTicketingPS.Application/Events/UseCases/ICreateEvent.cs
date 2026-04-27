@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TPTicketingPS.Application.Events.Dtos;
 
-namespace TPTicketingPS.Application.Events;
-
-public interface IGetEvents
+namespace TPTicketingPS.Application.Events.UseCases
 {
-    Task<List<EventSummaryDto>> ExecuteAsync(EventQueryParameters parameters);
+    public interface ICreateEvent
+    {
+        Task<int> ExecuteAsync(CreateEventRequest request);
+    }
 }

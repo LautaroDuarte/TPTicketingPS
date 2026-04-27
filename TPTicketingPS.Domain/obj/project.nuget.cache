@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bA8hko+yHpQ=",
+  "dgSpecHash": "K6oPehJ2ktg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj",
+  "projectFilePath": "C:\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

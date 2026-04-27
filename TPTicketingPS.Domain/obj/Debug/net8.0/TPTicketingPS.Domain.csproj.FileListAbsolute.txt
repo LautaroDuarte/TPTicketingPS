@@ -10,3 +10,15 @@ C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketi
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\refint\TPTicketingPS.Domain.dll
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.pdb
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\ref\TPTicketingPS.Domain.dll
+C:\TPTicketingPS\TPTicketingPS.Domain\bin\Debug\net8.0\TPTicketingPS.Domain.deps.json
+C:\TPTicketingPS\TPTicketingPS.Domain\bin\Debug\net8.0\TPTicketingPS.Domain.dll
+C:\TPTicketingPS\TPTicketingPS.Domain\bin\Debug\net8.0\TPTicketingPS.Domain.pdb
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.AssemblyInfoInputs.cache
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.AssemblyInfo.cs
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.csproj.CoreCompileInputs.cache
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.sourcelink.json
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.dll
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\refint\TPTicketingPS.Domain.dll
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\TPTicketingPS.Domain.pdb
+C:\TPTicketingPS\TPTicketingPS.Domain\obj\Debug\net8.0\ref\TPTicketingPS.Domain.dll

@@ -1,10 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\",
+  "WorkspaceRootPath": "C:\\TPTicketingPS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|c:\\users\\rodrigo godoy\\documents\\projects\\proyectoevento\\tpticketingps\\tpticketingps.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\tpticketingps.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\tpticketingps.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\getevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\getevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\igetevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\igetevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|c:\\tpticketingps\\tpticketingps.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|solutionrelative:tpticketingps.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|c:\\tpticketingps\\tpticketingps.infrastructure\\queries\\eventqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|solutionrelative:tpticketingps.infrastructure\\queries\\eventqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|c:\\tpticketingps\\tpticketingps.infrastructure\\tpticketingps.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|solutionrelative:tpticketingps.infrastructure\\tpticketingps.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|c:\\tpticketingps\\tpticketingps.infrastructure\\persistence\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|solutionrelative:tpticketingps.infrastructure\\persistence\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|c:\\tpticketingps\\tpticketingps.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|solutionrelative:tpticketingps.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,12 +66,113 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAKIUAAAAAAAAAAAuwLIUAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-04-27T13:17:20.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EventQueries.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
+              "RelativeToolTip": "TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T13:12:01.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TPTicketingPS.Infrastructure.csproj",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
+              "RelativeToolTip": "TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-27T13:11:36.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TPTicketingPS.Application.csproj",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj*",
+              "RelativeToolTip": "TPTicketingPS.Application\\TPTicketingPS.Application.csproj*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-27T13:09:30.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GetEvents.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\GetEvents.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Events\\GetEvents.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\GetEvents.cs",
+              "RelativeToolTip": "TPTicketingPS.Application\\Events\\GetEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T13:01:19.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IGetEvents.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\IGetEvents.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Events\\IGetEvents.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\IGetEvents.cs",
+              "RelativeToolTip": "TPTicketingPS.Application\\Events\\IGetEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T13:00:53.949Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.API\\appsettings.json",
+              "RelativeDocumentMoniker": "TPTicketingPS.API\\appsettings.json",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.API\\appsettings.json",
+              "RelativeToolTip": "TPTicketingPS.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-26T22:45:01.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "RelativeToolTip": "TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T22:40:23.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.API\\Program.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.API\\Program.cs",
               "RelativeDocumentMoniker": "TPTicketingPS.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.API\\Program.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.API\\Program.cs",
               "RelativeToolTip": "TPTicketingPS.API\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-25T19:23:27.951Z",
               "EditorCaption": ""
