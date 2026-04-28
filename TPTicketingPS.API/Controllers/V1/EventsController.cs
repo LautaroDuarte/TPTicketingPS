@@ -32,8 +32,6 @@ namespace TPTicketingPS.API.Controllers.V1
             return Ok(result);
         }
 
-        [HttpPost]
-
         [HttpGet("{eventId}/seats")]
         public async Task<IActionResult> GetSeats(
         int eventId,
