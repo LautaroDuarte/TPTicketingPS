@@ -32,7 +32,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-<<<<<<< Updated upstream
               "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj": {
                 "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj"
               }
@@ -57,7 +56,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[8.0.26, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -79,11 +78,11 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.6.2, )"
+              "version": "[6.7.3, )"
             },
             "Swashbuckle.AspNetCore.Annotations": {
               "target": "Package",
-              "version": "[8.1.4, )"
+              "version": "[6.7.3, )"
             }
           },
           "imports": [
@@ -139,10 +138,6 @@
             "projectReferences": {
               "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj": {
                 "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj"
-=======
-              "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj": {
-                "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj"
->>>>>>> Stashed changes
               }
             }
           }
@@ -163,6 +158,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.26, )"
@@ -188,7 +187,6 @@
         }
       }
     },
-<<<<<<< Updated upstream
     "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -197,16 +195,6 @@
         "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\TPTicketingPS.Domain.csproj",
         "packagesPath": "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Domain\\obj\\",
-=======
-    "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
-        "projectName": "TPTicketingPS.Application",
-        "projectPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
-        "packagesPath": "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\obj\\",
->>>>>>> Stashed changes
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\programs files\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -261,7 +249,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
-<<<<<<< Updated upstream
         }
       }
     },
@@ -347,8 +334,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
-=======
->>>>>>> Stashed changes
         }
       }
     }

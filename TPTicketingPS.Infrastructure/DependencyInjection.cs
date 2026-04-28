@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TPTicketingPS.Application.Common.Interfaces;
+using TPTicketingPS.Infrastructure.Auditing;
 using TPTicketingPS.Infrastructure.Persistence;
 
 namespace TPTicketingPS.Infrastructure;
@@ -28,6 +29,9 @@ public static class DependencyInjection
             }));
 
         services.AddScoped<IAppDbContext>(sp => sp.GetRequiredService<AppDbContext>());
+        services.AddScoped<DbInitializer>();
+
+        services.AddScoped<IAuditLogger, AuditLogger>();
 
         return services;
     }

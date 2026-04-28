@@ -1,26 +1,3 @@
-C:\Users\lauta\source\repos\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.deps.json
-C:\Users\lauta\source\repos\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.dll
-C:\Users\lauta\source\repos\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.pdb
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfoInputs.cache
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfo.cs
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.csproj.CoreCompileInputs.cache
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.dll
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\refint\TPTicketingPS.Application.dll
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.pdb
-C:\Users\lauta\source\repos\TPTicketingPS.Application\obj\Debug\net8.0\ref\TPTicketingPS.Application.dll
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.deps.json
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.dll
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.pdb
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfoInputs.cache
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.AssemblyInfo.cs
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.csproj.CoreCompileInputs.cache
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.sourcelink.json
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.dll
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\refint\TPTicketingPS.Application.dll
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\TPTicketingPS.Application.pdb
-C:\Users\lauta\source\repos\TPTicketingPS\TPTicketingPS.Application\obj\Debug\net8.0\ref\TPTicketingPS.Application.dll
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.deps.json
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.dll
 C:\Users\Rodrigo Godoy\Documents\Projects\ProyectoEvento\TPTicketingPS\TPTicketingPS.Application\bin\Debug\net8.0\TPTicketingPS.Application.pdb

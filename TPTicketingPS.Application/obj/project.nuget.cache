@@ -1,10 +1,11 @@
 {
   "version": 2,
-<<<<<<< Updated upstream
-  "dgSpecHash": "F6hR4rsTjrU=",
+  "dgSpecHash": "KI5NpVQgX9s=",
   "success": true,
   "projectFilePath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
+    "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
     "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.26\\microsoft.entityframeworkcore.8.0.26.nupkg.sha512",
     "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.26\\microsoft.entityframeworkcore.abstractions.8.0.26.nupkg.sha512",
     "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.26\\microsoft.entityframeworkcore.analyzers.8.0.26.nupkg.sha512",
@@ -17,11 +18,5 @@
     "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\Rodrigo Godoy\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
   ],
-=======
-  "dgSpecHash": "Mu3ZARSY4mE=",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Rodrigo Godoy\\Documents\\Projects\\ProyectoEvento\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
-  "expectedPackageFiles": [],
->>>>>>> Stashed changes
   "logs": []
 }
