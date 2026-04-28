@@ -15,4 +15,4 @@ obj/
 
 # Rider / VS Code (opcional)
 .idea/
-.vscode/
+.vscode/.vs/
