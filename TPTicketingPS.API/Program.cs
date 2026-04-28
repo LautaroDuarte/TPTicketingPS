@@ -46,9 +46,23 @@ builder.Services.AddScoped<ICurrentUser, CurrentUser>();
 // Capas
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-
+// Registro de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  // Frontend en desarrollo (React dev server)
+                  // ⚠ En producción reemplazar por dominio real (ej: https://miapp.com)
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
+// 👇 Activamos la policy que definimos arriba
+app.UseCors("AllowFrontend");
 
 // Seed
 if (app.Environment.IsDevelopment())
