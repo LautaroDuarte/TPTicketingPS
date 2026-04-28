@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TPTicketingPS.Application.Events.Dtos;
 
 namespace TPTicketingPS.Application.Events;
 
 public interface IGetEvents
 {
-    List<string> Execute();
+    Task<List<EventSummaryDto>> ExecuteAsync(
+        EventQueryParameters parameters,
+        CancellationToken cancellationToken = default);
 }

@@ -13,7 +13,7 @@ public class DbInitializer(AppDbContext context, ILogger<DbInitializer> logger)
     public async Task SeedAsync(CancellationToken cancellationToken = default)
     {
         // Si la base no existe, se crea y se aplican todas las migraciones.
-        await context.Database.MigrateAsync(cancellationToken);
+      
 
         if (await context.Events.AnyAsync(cancellationToken))
         {
