@@ -14,16 +14,13 @@ namespace TPTicketingPS.API.Controllers.V1
     {
         private readonly IGetEvents _getEvents;
         private readonly IGetSeats _getSeats;
-        private readonly ICreateEvent _createEvent;
 
         public EventsController(
             IGetEvents getEvents,
-            IGetSeats getSeats,
-            ICreateEvent createEvent)
+            IGetSeats getSeats)
         {
             _getEvents = getEvents;
             _getSeats = getSeats;
-            _createEvent = createEvent;
         }
 
         [HttpGet]
@@ -36,13 +33,6 @@ namespace TPTicketingPS.API.Controllers.V1
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateEvent(
-            [FromBody] CreateEventRequest request,
-            CancellationToken cancellationToken)
-        {
-            var id = await _createEvent.ExecuteAsync(request, cancellationToken);
-            return Ok(id);
-        }
 
         [HttpGet("{eventId}/seats")]
         public async Task<IActionResult> GetSeats(
