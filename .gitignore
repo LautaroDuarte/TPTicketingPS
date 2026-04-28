@@ -9,8 +9,9 @@ obj/
 *.user
 *.suo
 
-# Logs / caches
-*.cache
-*.dll
-*.exe
-*.pdb
+# Logs
+*.log
+
+# Rider / VS Code (opcional)
+.idea/
+.vscode/
