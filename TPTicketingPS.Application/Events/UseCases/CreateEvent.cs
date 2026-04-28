@@ -1,30 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TPTicketingPS.Application.Common.Interfaces;
+﻿using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Application.Events.Dtos;
+using TPTicketingPS.Application.Events.UseCases;
 using TPTicketingPS.Domain.Entities;
 
-namespace TPTicketingPS.Application.Events.UseCases
+namespace TPTicketingPS.Application.Events;
+
+public class CreateEvent(IAppDbContext context) : ICreateEvent
 {
-    public class CreateEvent(IAppDbContext context) : ICreateEvent
+    public async Task<int> ExecuteAsync(
+        CreateEventRequest request,
+        CancellationToken cancellationToken = default)
     {
-        public async Task<int> ExecuteAsync(CreateEventRequest request)
-        {
-            var ev = new Event(
-                request.Name,
-                request.EventDate,
-                request.Venue,
-                request.Description,
-                request.MaxReservationsPerUser ?? int.MaxValue 
-            );
+        var ev = new Event(
+            request.Name,
+            request.EventDate,
+            request.Venue,
+            request.Description,
+            request.MaxReservationsPerUser ?? int.MaxValue
+        );
 
-            context.Events.Add(ev);
-            await context.SaveChangesAsync();
+        context.Events.Add(ev);
+        await context.SaveChangesAsync(cancellationToken);
 
-            return ev.Id;
-        }
+        return ev.Id;
     }
 }

@@ -1,36 +1,39 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Application.Events.Dtos;
 
-namespace TPTicketingPS.Application.Events.UseCases;
+namespace TPTicketingPS.Application.Events;
 
 public class GetEvents(IAppDbContext context) : IGetEvents
 {
-    public async Task<List<EventSummaryDto>> ExecuteAsync(EventQueryParameters parameters)
+    public async Task<List<EventSummaryDto>> ExecuteAsync(
+        EventQueryParameters parameters,
+        CancellationToken cancellationToken = default)
     {
         var query = context.Events.AsQueryable();
 
-        if (!string.IsNullOrEmpty(parameters.Status))
+        // 🔎 Filtro por Status (si viene)
+        if (!string.IsNullOrWhiteSpace(parameters.Status))
         {
-            query = query.Where(e => e.Status.ToString() == parameters.Status);
+            query = query.Where(e => e.Status == parameters.Status);
         }
 
-        var events = await query
-            .Skip((parameters.Page - 1) * parameters.PageSize)
-            .Take(parameters.PageSize)
-            .ToListAsync();
+        // 📄 Paginación
+        var skip = (parameters.Page - 1) * parameters.PageSize;
 
-        return events.Select(e => new EventSummaryDto(
-            e.Id,
-            e.Name,
-            e.EventDate,
-            e.Venue,
-            e.Status.ToString()
-        )).ToList();
+        var events = await query
+            .OrderBy(e => e.EventDate) // opcional pero recomendable
+            .Skip(skip)
+            .Take(parameters.PageSize)
+            .Select(e => new EventSummaryDto(
+                e.Id,
+                e.Name,
+                e.EventDate,
+                e.Venue,
+                e.Status
+            ))
+            .ToListAsync(cancellationToken);
+
+        return events;
     }
 }

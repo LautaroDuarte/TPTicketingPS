@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "C:\\TPTicketingPS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|c:\\tpticketingps\\tpticketingps.api\\controllers\\v1\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|solutionrelative:tpticketingps.api\\controllers\\v1\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\seats\\usecases\\getseats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\seats\\usecases\\getseats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\seats\\igetseats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\seats\\igetseats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|c:\\tpticketingps\\tpticketingps.infrastructure\\persistence\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|solutionrelative:tpticketingps.infrastructure\\persistence\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\usecases\\getevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\usecases\\getevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\usecases\\createevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\usecases\\createevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\usecases\\icreateevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\usecases\\icreateevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\igetevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\igetevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
@@ -10,28 +42,12 @@
       "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\tpticketingps.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\getevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\getevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|c:\\tpticketingps\\tpticketingps.application\\events\\igetevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{914CAE57-8ABE-4CA1-BD06-8016ECE96434}|TPTicketingPS.Application\\TPTicketingPS.Application.csproj|solutionrelative:tpticketingps.application\\events\\igetevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|c:\\tpticketingps\\tpticketingps.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|solutionrelative:tpticketingps.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|c:\\tpticketingps\\tpticketingps.infrastructure\\queries\\eventqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|solutionrelative:tpticketingps.infrastructure\\queries\\eventqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|c:\\tpticketingps\\tpticketingps.infrastructure\\tpticketingps.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|solutionrelative:tpticketingps.infrastructure\\tpticketingps.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|c:\\tpticketingps\\tpticketingps.infrastructure\\persistence\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B6542391-01AC-43B5-A4A2-335D620E0FDB}|TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj|solutionrelative:tpticketingps.infrastructure\\persistence\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BD7F201E-FEFA-4CFC-BE81-AC14AF82188C}|TPTicketingPS.API\\TPTicketingPS.API.csproj|c:\\tpticketingps\\tpticketingps.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -45,7 +61,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -65,7 +81,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetSeats.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Seats\\UseCases\\GetSeats.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Seats\\UseCases\\GetSeats.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Seats\\UseCases\\GetSeats.cs",
+              "RelativeToolTip": "TPTicketingPS.Application\\Seats\\UseCases\\GetSeats.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T02:05:55.091Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IGetSeats.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Seats\\IGetSeats.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Seats\\IGetSeats.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Seats\\IGetSeats.cs",
+              "RelativeToolTip": "TPTicketingPS.Application\\Seats\\IGetSeats.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T02:05:25.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreateEvent.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\UseCases\\CreateEvent.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Events\\UseCases\\CreateEvent.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\UseCases\\CreateEvent.cs",
+              "RelativeToolTip": "TPTicketingPS.Application\\Events\\UseCases\\CreateEvent.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAowBoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T13:30:19.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "EventsController.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.API\\Controllers\\V1\\EventsController.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.API\\Controllers\\V1\\EventsController.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.API\\Controllers\\V1\\EventsController.cs*",
+              "RelativeToolTip": "TPTicketingPS.API\\Controllers\\V1\\EventsController.cs*",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAABwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T13:21:12.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -73,24 +141,11 @@
               "RelativeToolTip": "..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ViewState": "AgIAAKIUAAAAAAAAAAAuwLIUAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2026-04-27T13:17:20.615Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-27T13:17:20.615Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EventQueries.cs",
-              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
-              "RelativeDocumentMoniker": "TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
-              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
-              "RelativeToolTip": "TPTicketingPS.Infrastructure\\Queries\\EventQueries.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAowCUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-27T13:12:01.337Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "TPTicketingPS.Infrastructure.csproj",
               "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
               "RelativeDocumentMoniker": "TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
@@ -98,31 +153,29 @@
               "RelativeToolTip": "TPTicketingPS.Infrastructure\\TPTicketingPS.Infrastructure.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-27T13:11:36.521Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-27T13:11:36.521Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "TPTicketingPS.Application.csproj",
               "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
               "RelativeDocumentMoniker": "TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
-              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj*",
-              "RelativeToolTip": "TPTicketingPS.Application\\TPTicketingPS.Application.csproj*",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
+              "RelativeToolTip": "TPTicketingPS.Application\\TPTicketingPS.Application.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-27T13:09:30.042Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-27T13:09:30.042Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GetEvents.cs",
-              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\GetEvents.cs",
-              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Events\\GetEvents.cs",
-              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\GetEvents.cs",
-              "RelativeToolTip": "TPTicketingPS.Application\\Events\\GetEvents.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\UseCases\\GetEvents.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Events\\UseCases\\GetEvents.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\UseCases\\GetEvents.cs",
+              "RelativeToolTip": "TPTicketingPS.Application\\Events\\UseCases\\GetEvents.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-27T13:01:19.226Z",
               "EditorCaption": ""
@@ -130,19 +183,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "DbInitializer.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "RelativeToolTip": "TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAwwBEAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T22:40:23.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ICreateEvent.cs",
+              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\UseCases\\ICreateEvent.cs",
+              "RelativeDocumentMoniker": "TPTicketingPS.Application\\Events\\UseCases\\ICreateEvent.cs",
+              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\UseCases\\ICreateEvent.cs",
+              "RelativeToolTip": "TPTicketingPS.Application\\Events\\UseCases\\ICreateEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T13:33:04.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "IGetEvents.cs",
               "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\IGetEvents.cs",
               "RelativeDocumentMoniker": "TPTicketingPS.Application\\Events\\IGetEvents.cs",
               "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Application\\Events\\IGetEvents.cs",
               "RelativeToolTip": "TPTicketingPS.Application\\Events\\IGetEvents.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-27T13:00:53.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.API\\appsettings.json",
               "RelativeDocumentMoniker": "TPTicketingPS.API\\appsettings.json",
@@ -154,19 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DbInitializer.cs",
-              "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
-              "RelativeDocumentMoniker": "TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
-              "ToolTip": "C:\\TPTicketingPS\\TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
-              "RelativeToolTip": "TPTicketingPS.Infrastructure\\Persistence\\DbInitializer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T22:40:23.349Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\TPTicketingPS\\TPTicketingPS.API\\Program.cs",
               "RelativeDocumentMoniker": "TPTicketingPS.API\\Program.cs",
@@ -174,8 +241,7 @@
               "RelativeToolTip": "TPTicketingPS.API\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-25T19:23:27.951Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-25T19:23:27.951Z"
             }
           ]
         }

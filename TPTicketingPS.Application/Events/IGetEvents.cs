@@ -9,5 +9,7 @@ namespace TPTicketingPS.Application.Events;
 
 public interface IGetEvents
 {
-    Task<List<EventSummaryDto>> ExecuteAsync(EventQueryParameters parameters);
+    Task<List<EventSummaryDto>> ExecuteAsync(
+        EventQueryParameters parameters,
+        CancellationToken cancellationToken = default);
 }

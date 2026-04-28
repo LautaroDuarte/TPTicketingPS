@@ -9,6 +9,6 @@ namespace TPTicketingPS.Application.Events.UseCases
 {
     public interface ICreateEvent
     {
-        Task<int> ExecuteAsync(CreateEventRequest request);
+        Task<int> ExecuteAsync(CreateEventRequest request, CancellationToken cancellationToken);
     }
 }

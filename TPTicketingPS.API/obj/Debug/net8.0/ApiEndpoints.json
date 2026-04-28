@@ -23,13 +23,39 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TPTicketingPS.API.Controllers.V1.EventsController",
+    "Method": "CreateEvent",
+    "RelativePath": "api/v1/events",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
+        "Name": "request",
+        "Type": "TPTicketingPS.Application.Events.Dtos.CreateEventRequest",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TPTicketingPS.API.Controllers.V1.EventsController",
+    "Method": "GetSeats",
+    "RelativePath": "api/v1/events/{eventId}/seats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "TPTicketingPS.API.Controllers.V1.UsersController",
