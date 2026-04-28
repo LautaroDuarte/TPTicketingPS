@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TPTicketingPS.Application.Reservations.Dtos;
 using TPTicketingPS.Application.Reservations.UseCases.CreateReservation;
+using TPTicketingPS.Application.Reservations.UseCases.GetReservationById;
 
 namespace TPTicketingPS.API.Controllers.V1;
 
 [ApiController]
 [Route("api/v1/reservations")]
 [Produces("application/json")]
-public class ReservationsController(ICreateReservation createReservation) : ControllerBase
+public class ReservationsController(
+    ICreateReservation createReservation,
+    IGetReservationById getReservationById) : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(ReservationDto), StatusCodes.Status201Created)]
@@ -20,7 +23,20 @@ public class ReservationsController(ICreateReservation createReservation) : Cont
     {
         var reservation = await createReservation.ExecuteAsync(request, cancellationToken);
 
-        // Por ahora devolvemos 201 sin Location header.
-        return StatusCode(StatusCodes.Status201Created, reservation);
+        return CreatedAtRoute(
+            routeName: "GetReservationById",
+            routeValues: new { reservationId = reservation.Id },
+            value: reservation);
+    }
+
+    [HttpGet("{reservationId:guid}", Name = "GetReservationById")]
+    [ProducesResponseType(typeof(ReservationDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<ReservationDto>> GetById(
+        [FromRoute] Guid reservationId,
+        CancellationToken cancellationToken)
+    {
+        var reservation = await getReservationById.ExecuteAsync(reservationId, cancellationToken);
+        return Ok(reservation);
     }
 }

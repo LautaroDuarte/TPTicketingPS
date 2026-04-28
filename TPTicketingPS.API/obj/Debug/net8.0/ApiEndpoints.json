@@ -61,6 +61,38 @@
     ]
   },
   {
+    "ContainingType": "TPTicketingPS.API.Controllers.V1.ReservationsController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/reservations/{reservationId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservationId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TPTicketingPS.Application.Reservations.Dtos.ReservationDto",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetReservationById"
+  },
+  {
     "ContainingType": "TPTicketingPS.API.Controllers.V1.UsersController",
     "Method": "Create",
     "RelativePath": "api/v1/users",
@@ -119,6 +151,50 @@
           "application/json"
         ],
         "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      }
+    ],
+    "EndpointName": "GetUserById"
+  },
+  {
+    "ContainingType": "TPTicketingPS.API.Controllers.V1.UsersController",
+    "Method": "GetReservations",
+    "RelativePath": "api/v1/users/{userId}/reservations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "Status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IReadOnlyCollection\u00601[[TPTicketingPS.Application.Reservations.Dtos.ReservationDto, TPTicketingPS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 400
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",

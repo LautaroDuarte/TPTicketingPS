@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TPTicketingPS.Application.Reservations.Dtos;
+using TPTicketingPS.Application.Reservations.UseCases.GetUserReservations;
 using TPTicketingPS.Application.Users.Dtos;
 using TPTicketingPS.Application.Users.UseCases.CreateUser;
 using TPTicketingPS.Application.Users.UseCases.GetUserById;
@@ -10,7 +12,8 @@ namespace TPTicketingPS.API.Controllers.V1;
 [Produces("application/json")]
 public class UsersController(
     ICreateUser createUser,
-    IGetUserById getUserById) : ControllerBase
+    IGetUserById getUserById,
+    IGetUserReservations getUserReservations) : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(UserDto), StatusCodes.Status201Created)]
@@ -28,7 +31,7 @@ public class UsersController(
             value: user);
     }
 
-    [HttpGet("{userId:int}")]
+    [HttpGet("{userId:int}", Name = "GetUserById")]
     [ProducesResponseType(typeof(UserDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<UserDto>> GetById(
@@ -37,5 +40,18 @@ public class UsersController(
     {
         var user = await getUserById.ExecuteAsync(userId, cancellationToken);
         return Ok(user);
+    }
+
+    [HttpGet("{userId:int}/reservations")]
+    [ProducesResponseType(typeof(IReadOnlyCollection<ReservationDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IReadOnlyCollection<ReservationDto>>> GetReservations(
+        [FromRoute] int userId,
+        [FromQuery] GetUserReservationsQueryParameters parameters,
+        CancellationToken cancellationToken)
+    {
+        var reservations = await getUserReservations.ExecuteAsync(userId, parameters, cancellationToken);
+        return Ok(reservations);
     }
 }
