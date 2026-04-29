@@ -11,22 +11,82 @@ export default function SeatsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
-
+  const [message, setMessage] = useState(null);
   useEffect(() => {
-    api.get(`/api/v1/events/${eventId}/seats`)
+    api
+      .get(`/api/v1/events/${eventId}/seats`)
       .then(setData)
-      .catch(err => setError(err.message))
+      .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [eventId]);
 
   const toggleSeat = (seat, sectorPrice, sectorName) => {
-    setSelectedSeats(prev => {
-      const exists = prev.find(s => s.id === seat.id);
+    setSelectedSeats((prev) => {
+      const exists = prev.find((s) => s.id === seat.id);
       if (exists) {
-        return prev.filter(s => s.id !== seat.id);
+        return prev.filter((s) => s.id !== seat.id);
       }
       return [...prev, { ...seat, price: sectorPrice, sectorName }];
     });
+  };
+  const handleReserve = async () => {
+    try {
+      const payload = {
+        eventId: Number(eventId),
+        seatIds: selectedSeats.map((s) => s.id),
+      };
+
+      await api.post("/api/v1/reservations", payload);
+
+      // refrescar mapa
+      const updated = await api.get(`/api/v1/events/${eventId}/seats`);
+      setData(updated);
+
+      // limpiar selección
+      setSelectedSeats([]);
+
+      // ✅ mensaje éxito
+      setMessage({
+        type: "success",
+        text: "Reserva realizada con éxito",
+      });
+    } catch (err) {
+  console.error("ERROR RESERVA:", err);
+
+  // 🔥 guardamos los seleccionados antes de perderlos
+  const seatsSnapshot = [...selectedSeats];
+
+  let text =
+    err.message ||
+    err.payload?.detail ||
+    err.payload?.title ||
+    "Ocurrió un error inesperado";
+
+  // 🔥 traducimos IDs → nombres humanos
+  if (text.includes("no están disponibles")) {
+    const readableSeats = seatsSnapshot.map(
+      (s) => `${s.sectorName} ${s.rowIdentifier}${s.seatNumber}`
+    );
+
+    text = `Los siguientes asientos no están disponibles: ${readableSeats.join(", ")}`;
+  }
+
+  setMessage({
+    type: "error",
+    text,
+  });
+
+  // 🔄 refrescar mapa
+  try {
+    const updated = await api.get(`/api/v1/events/${eventId}/seats`);
+    setData(updated);
+  } catch (refreshErr) {
+    console.error("ERROR REFRESH:", refreshErr);
+  }
+
+  // limpiar selección
+  setSelectedSeats([]);
+}
   };
 
   // Agrupación por sector + fila (lógica original de tu compa)
@@ -35,7 +95,7 @@ export default function SeatsPage() {
 
     return {
       ...data,
-      sectors: data.sectors.map(sector => {
+      sectors: data.sectors.map((sector) => {
         const grouped = sector.seats.reduce((acc, seat) => {
           const row = seat.rowIdentifier;
           if (!acc[row]) acc[row] = [];
@@ -43,7 +103,7 @@ export default function SeatsPage() {
           return acc;
         }, {});
 
-        Object.keys(grouped).forEach(row => {
+        Object.keys(grouped).forEach((row) => {
           grouped[row].sort((a, b) => a.seatNumber - b.seatNumber);
         });
 
@@ -78,7 +138,13 @@ export default function SeatsPage() {
       </button>
 
       <h2 className="mb-3">{processedData.eventName}</h2>
-
+      {message && (
+        <div
+          className={`alert ${message.type === "success" ? "alert-success" : "alert-danger"} mt-2`}
+        >
+          {message.text}
+        </div>
+      )}
       {/* Leyenda */}
       <div className="d-flex gap-3 mb-4 flex-wrap">
         <Legend className="available" label="Disponible" />
@@ -90,7 +156,7 @@ export default function SeatsPage() {
       <div className="row g-4">
         {/* Columna principal: sectores */}
         <div className="col-lg-9">
-          {processedData.sectors.map(sector => (
+          {processedData.sectors.map((sector) => (
             <div key={sector.sectorId} className="card mb-4 shadow-sm">
               <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">{sector.sectorName}</h5>
@@ -99,28 +165,35 @@ export default function SeatsPage() {
                 </span>
               </div>
               <div className="card-body">
-                {Object.keys(sector.groupedSeats).sort().map(row => (
-                  <div key={row} className="row-seats">
-                    <span className="row-label">{row}</span>
-                    {sector.groupedSeats[row].map(seat => {
-                      const selected = selectedSeats.some(s => s.id === seat.id);
-                      return (
-                        <button
-                          key={seat.id}
-                          disabled={seat.status !== "Available"}
-                          onClick={() => toggleSeat(seat, sector.price, sector.sectorName)}
-                          className={`seat ${selected ? "selected" : ""} ${seat.status.toLowerCase()}`}
-                          title={`${seat.rowIdentifier}${seat.seatNumber} — ${seat.status}`}
-                        >
-                          <MdEventSeat size={14} />
-                          <span className="seat-label">
-                            {seat.rowIdentifier}{seat.seatNumber}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                ))}
+                {Object.keys(sector.groupedSeats)
+                  .sort()
+                  .map((row) => (
+                    <div key={row} className="row-seats">
+                      <span className="row-label">{row}</span>
+                      {sector.groupedSeats[row].map((seat) => {
+                        const selected = selectedSeats.some(
+                          (s) => s.id === seat.id,
+                        );
+                        return (
+                          <button
+                            key={seat.id}
+                            disabled={seat.status !== "Available"}
+                            onClick={() =>
+                              toggleSeat(seat, sector.price, sector.sectorName)
+                            }
+                            className={`seat ${selected ? "selected" : ""} ${seat.status.toLowerCase()}`}
+                            title={`${seat.rowIdentifier}${seat.seatNumber} — ${seat.status}`}
+                          >
+                            <MdEventSeat size={14} />
+                            <span className="seat-label">
+                              {seat.rowIdentifier}
+                              {seat.seatNumber}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ))}
               </div>
             </div>
           ))}
@@ -140,10 +213,14 @@ export default function SeatsPage() {
               ) : (
                 <>
                   <ul className="list-unstyled small mb-3">
-                    {selectedSeats.map(seat => (
-                      <li key={seat.id} className="d-flex justify-content-between mb-1">
+                    {selectedSeats.map((seat) => (
+                      <li
+                        key={seat.id}
+                        className="d-flex justify-content-between mb-1"
+                      >
                         <span>
-                          {seat.sectorName} {seat.rowIdentifier}{seat.seatNumber}
+                          {seat.sectorName} {seat.rowIdentifier}
+                          {seat.seatNumber}
                         </span>
                         <span className="text-muted">
                           ${seat.price.toLocaleString("es-AR")}
@@ -160,6 +237,7 @@ export default function SeatsPage() {
               <button
                 className="btn btn-success w-100 mt-3"
                 disabled={selectedSeats.length === 0}
+                onClick={handleReserve}
               >
                 Continuar reserva
               </button>
