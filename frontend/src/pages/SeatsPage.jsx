@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-
+import { MdEventSeat } from "react-icons/md";
+import "./SeatsPage.css";
 export default function SeatsPage({ eventId, onBack }) {
   const [data, setData] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -8,17 +9,21 @@ export default function SeatsPage({ eventId, onBack }) {
     if (!eventId) return;
 
     fetch(`https://localhost:39716/api/v1/events/${eventId}/seats`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(setData)
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   }, [eventId]);
 
-  const toggleSeat = (seatId) => {
-    setSelectedSeats(prev =>
-      prev.includes(seatId)
-        ? prev.filter(id => id !== seatId)
-        : [...prev, seatId]
-    );
+  const toggleSeat = (seat) => {
+    setSelectedSeats((prev) => {
+      const exists = prev.find((s) => s.id === seat.id);
+
+      if (exists) {
+        return prev.filter((s) => s.id !== seat.id);
+      }
+
+      return [...prev, seat];
+    });
   };
 
   // 🔥 AGRUPACIÓN LIMPIA POR SECTOR + FILA
@@ -27,7 +32,7 @@ export default function SeatsPage({ eventId, onBack }) {
 
     return {
       ...data,
-      sectors: data.sectors.map(sector => {
+      sectors: data.sectors.map((sector) => {
         const grouped = sector.seats.reduce((acc, seat) => {
           const row = seat.rowIdentifier;
 
@@ -38,73 +43,83 @@ export default function SeatsPage({ eventId, onBack }) {
         }, {});
 
         // ordenar cada fila por número de asiento
-        Object.keys(grouped).forEach(row => {
+        Object.keys(grouped).forEach((row) => {
           grouped[row].sort((a, b) => a.seatNumber - b.seatNumber);
         });
 
         return {
           ...sector,
-          groupedSeats: grouped
+          groupedSeats: grouped,
         };
-      })
+      }),
     };
   }, [data]);
 
   if (!processedData) return <p>Cargando asientos...</p>;
 
   return (
-    <div>
-      <button onClick={onBack}>Volver</button>
+    <div className="seats-page">
+      <div className="seats-content">
+        <button onClick={onBack}>Volver</button>
 
-      <h2>{processedData.eventName}</h2>
+        <h2>{processedData.eventName}</h2>
 
-      {processedData.sectors.map(sector => (
-        <div key={sector.sectorId} style={{ marginBottom: 30 }}>
-          <h3>
-            {sector.sectorName} - ${sector.price}
-          </h3>
+        <div className="sectors">
+          {processedData.sectors.map((sector) => (
+            <div key={sector.sectorId} className="sector">
+              <h3>
+                {sector.sectorName} - ${sector.price}
+              </h3>
 
-          {/* FILAS */}
-          {Object.keys(sector.groupedSeats)
-            .sort()
-            .map(row => (
-              <div
-                key={row}
-                style={{
-                  display: "flex",
-                  gap: 5,
-                  marginBottom: 5
-                }}
-              >
-                {sector.groupedSeats[row].map(seat => {
-                  const selected = selectedSeats.includes(seat.id);
+              {Object.keys(sector.groupedSeats)
+                .sort()
+                .map((row) => (
+                  <div key={row} className="row">
+                    {sector.groupedSeats[row].map((seat) => {
+                      const selected = selectedSeats.some(
+                        (s) => s.id === seat.id,
+                      );
 
-                  return (
-                    <button
-                      key={seat.id}
-                      disabled={seat.status !== "Available"}
-                      onClick={() => toggleSeat(seat.id)}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        background:
-                          seat.status === "Available"
-                            ? selected
-                              ? "green"
-                              : "lightgray"
-                            : seat.status === "Reserved"
-                            ? "orange"
-                            : "red"
-                      }}
-                    >
-                      {seat.rowIdentifier}{seat.seatNumber}
-                    </button>
-                  );
-                })}
-              </div>
-            ))}
+                      return (
+                        <button
+                          key={seat.id}
+                          disabled={seat.status !== "Available"}
+                          onClick={() => toggleSeat(seat)}
+                          className={`seat ${selected ? "selected" : ""} ${seat.status.toLowerCase()}`}
+                        >
+                          <MdEventSeat size={16} />
+                          {seat.rowIdentifier}
+                          {seat.seatNumber}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+
+      <div className="summary">
+        <h3>Resumen</h3>
+
+        {selectedSeats.length === 0 && <p>No hay asientos seleccionados</p>}
+
+        {selectedSeats.map((seat) => (
+          <div key={seat.id} className="summary-item">
+            {seat.sectorName} {seat.rowIdentifier}
+            {seat.seatNumber} - ${seat.price}
+          </div>
+        ))}
+
+        <hr />
+
+        <div className="total">
+          Total: ${selectedSeats.reduce((acc, s) => acc + s.price, 0)}
+        </div>
+
+        <button disabled={selectedSeats.length === 0}>Continuar reserva</button>
+      </div>
     </div>
   );
 }

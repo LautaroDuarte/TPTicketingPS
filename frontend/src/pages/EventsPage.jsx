@@ -12,7 +12,7 @@ export default function EventsPage({ onSelectEvent }) {
 
   return (
     <div>
-      <h1>Eventos</h1>
+      <h1>Catálogo de eventos</h1>
 
       <ul>
         {events.map(e => (
