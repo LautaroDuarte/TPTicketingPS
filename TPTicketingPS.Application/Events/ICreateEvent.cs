@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TPTicketingPS.Application.Events.Dtos;
 
-namespace TPTicketingPS.Application.Events.UseCases
+namespace TPTicketingPS.Application.Events
 {
     public interface ICreateEvent
     {

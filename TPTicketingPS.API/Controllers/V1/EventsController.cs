@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TPTicketingPS.Application.Events;
 using TPTicketingPS.Application.Events.Dtos;
-using TPTicketingPS.Application.Events.UseCases;
 using TPTicketingPS.Application.Seats;
 
 namespace TPTicketingPS.API.Controllers.V1
@@ -14,12 +13,15 @@ namespace TPTicketingPS.API.Controllers.V1
     {
         private readonly IGetEvents _getEvents;
         private readonly IGetSeats _getSeats;
+        private readonly IGetEventById _getEventById;
 
         public EventsController(
             IGetEvents getEvents,
+            IGetEventById getEventById,
             IGetSeats getSeats)
         {
             _getEvents = getEvents;
+            _getEventById = getEventById;
             _getSeats = getSeats;
         }
 
@@ -38,6 +40,14 @@ namespace TPTicketingPS.API.Controllers.V1
         CancellationToken cancellationToken)
         {
             var result = await _getSeats.ExecuteAsync(eventId, cancellationToken);
+            return Ok(result);
+        }
+        [HttpGet("{eventId:int}")]
+        public async Task<ActionResult<EventDto>> GetById(
+    int eventId,
+    CancellationToken cancellationToken)
+        {
+            var result = await _getEventById.ExecuteAsync(eventId, cancellationToken);
             return Ok(result);
         }
     }

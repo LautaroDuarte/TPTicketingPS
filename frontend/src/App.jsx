@@ -1,46 +1,48 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import EventsPage from "./pages/EventsPage";
+import EventDetailsPage from "./pages/EventDetailsPage";
+import SeatsPage from "./pages/SeatsPage";
 
 function App() {
-  const [events, setEvents] = useState([]);
-  const [page, setPage] = useState(1);
+  const [view, setView] = useState("events");
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  useEffect(() => {
-    fetch(`https://localhost:39716/api/V1/events?page=${page}&pageSize=10`)
-      .then(res => res.json())
-      .then(data => {
-        console.log("DATA:", data);
-        setEvents(data);
-      })
-      .catch(err => console.error(err));
-  }, [page]);
+  let screen;
 
-  return (
-    <div>
-      <h1>Eventos</h1>
+  // LISTA DE EVENTOS
+  if (view === "events") {
+    screen = (
+      <EventsPage
+        onSelectEvent={(id) => {
+          setSelectedEvent(id);
+          setView("details");
+        }}
+      />
+    );
+  }
 
-      <ul>
-        {events.map(e => (
-          <li key={e.id}>
-            {e.name} - {new Date(e.eventDate).toLocaleDateString()}
-          </li>
-        ))}
-      </ul>
+  // DETALLE DEL EVENTO
+  if (view === "details") {
+    screen = (
+      <EventDetailsPage
+        eventId={selectedEvent}
+        onBack={() => setView("events")}
+        onGoSeats={() => setView("seats")}
+      />
+    );
+  }
 
-      <div style={{ marginTop: 20 }}>
-        <button onClick={() => setPage(p => Math.max(p - 1, 1))}>
-          Anterior
-        </button>
+  // SEATS
+  if (view === "seats") {
+    screen = (
+      <SeatsPage
+        eventId={selectedEvent}
+        onBack={() => setView("details")}
+      />
+    );
+  }
 
-        <span style={{ margin: "0 10px" }}>
-          Página {page}
-        </span>
-
-        <button onClick={() => setPage(p => p + 1)}>
-          Siguiente
-        </button>
-      </div>
-    </div>
-  );
+  return screen;
 }
 
 export default App;
