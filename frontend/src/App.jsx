@@ -1,48 +1,31 @@
-import { useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import EventsPage from "./pages/EventsPage";
 import EventDetailsPage from "./pages/EventDetailsPage";
 import SeatsPage from "./pages/SeatsPage";
+import Layout from "./components/Layout";
 
 function App() {
-  const [view, setView] = useState("events");
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  return (
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Navigate to="/events" replace />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/events/:eventId" element={<EventDetailsPage />} />
+        <Route path="/events/:eventId/seats" element={<SeatsPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
+  );
+}
 
-  let screen;
-
-  // LISTA DE EVENTOS
-  if (view === "events") {
-    screen = (
-      <EventsPage
-        onSelectEvent={(id) => {
-          setSelectedEvent(id);
-          setView("details");
-        }}
-      />
-    );
-  }
-
-  // DETALLE DEL EVENTO
-  if (view === "details") {
-    screen = (
-      <EventDetailsPage
-        eventId={selectedEvent}
-        onBack={() => setView("events")}
-        onGoSeats={() => setView("seats")}
-      />
-    );
-  }
-
-  // SEATS
-  if (view === "seats") {
-    screen = (
-      <SeatsPage
-        eventId={selectedEvent}
-        onBack={() => setView("details")}
-      />
-    );
-  }
-
-  return screen;
+function NotFound() {
+  return (
+    <div className="text-center py-5">
+      <h1 className="display-1">404</h1>
+      <p className="lead">Página no encontrada</p>
+      <Link className="btn btn-primary" to="/events">Volver al inicio</Link>
+    </div>
+  );
 }
 
 export default App;
