@@ -51,42 +51,45 @@ export default function SeatsPage() {
         text: "Reserva realizada con éxito",
       });
     } catch (err) {
-  console.error("ERROR RESERVA:", err);
+      console.error("ERROR RESERVA:", err);
 
-  // 🔥 guardamos los seleccionados antes de perderlos
-  const seatsSnapshot = [...selectedSeats];
+      // 🔥 guardamos los seleccionados antes de perderlos
+      const seatsSnapshot = [...selectedSeats];
 
-  let text =
-    err.message ||
-    err.payload?.detail ||
-    err.payload?.title ||
-    "Ocurrió un error inesperado";
+      let text =
+  err.details
+    ? Object.entries(err.details)
+        .map(([field, msgs]) => `${field}: ${msgs.join(", ")}`)
+        .join(" | ")
+    : err.message ||
+      err.payload?.message ||
+      "Ocurrió un error inesperado";
 
-  // 🔥 traducimos IDs → nombres humanos
-  if (text.includes("no están disponibles")) {
-    const readableSeats = seatsSnapshot.map(
-      (s) => `${s.sectorName} ${s.rowIdentifier}${s.seatNumber}`
-    );
+      // 🔥 traducimos IDs → nombres humanos
+      if (text.includes("no están disponibles")) {
+        const readableSeats = seatsSnapshot.map(
+          (s) => `${s.sectorName} ${s.rowIdentifier}${s.seatNumber}`,
+        );
 
-    text = `Los siguientes asientos no están disponibles: ${readableSeats.join(", ")}`;
-  }
+        text = `Los siguientes asientos no están disponibles: ${readableSeats.join(", ")}`;
+      }
 
-  setMessage({
-    type: "error",
-    text,
-  });
+      setMessage({
+        type: "error",
+        text,
+      });
 
-  // 🔄 refrescar mapa
-  try {
-    const updated = await api.get(`/api/v1/events/${eventId}/seats`);
-    setData(updated);
-  } catch (refreshErr) {
-    console.error("ERROR REFRESH:", refreshErr);
-  }
+      // 🔄 refrescar mapa
+      try {
+        const updated = await api.get(`/api/v1/events/${eventId}/seats`);
+        setData(updated);
+      } catch (refreshErr) {
+        console.error("ERROR REFRESH:", refreshErr);
+      }
 
-  // limpiar selección
-  setSelectedSeats([]);
-}
+      // limpiar selección
+      setSelectedSeats([]);
+    }
   };
 
   // Agrupación por sector + fila (lógica original de tu compa)
