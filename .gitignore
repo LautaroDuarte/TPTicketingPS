@@ -13,4 +13,7 @@ obj/
 *.cache
 *.dll
 *.exe
-*.pdbnode_modules/
+*.pdb
+
+# Node modules
+node_modules/
