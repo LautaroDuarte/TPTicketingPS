@@ -1,6 +1,5 @@
 ﻿using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Application.Events.Dtos;
-using TPTicketingPS.Application.Events.UseCases;
 using TPTicketingPS.Domain.Entities;
 
 namespace TPTicketingPS.Application.Events;

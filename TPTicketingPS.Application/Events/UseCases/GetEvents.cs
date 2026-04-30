@@ -11,7 +11,6 @@ public class GetEvents(IAppDbContext context) : IGetEvents
         CancellationToken cancellationToken = default)
     {
         var query = context.Events.AsQueryable();
-
         // 🔎 Filtro por Status (si viene)
         if (!string.IsNullOrWhiteSpace(parameters.Status))
         {

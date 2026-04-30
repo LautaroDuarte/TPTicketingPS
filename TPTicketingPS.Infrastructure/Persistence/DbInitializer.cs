@@ -25,6 +25,7 @@ public class DbInitializer(AppDbContext context, ILogger<DbInitializer> logger)
 
         await SeedUsersAsync(cancellationToken);
         await SeedEventWithSectorsAndSeatsAsync(cancellationToken);
+        await SeedSimpleEventsAsync(cancellationToken); // Eventos planos
 
         logger.LogInformation("Seed completado.");
     }
@@ -88,6 +89,23 @@ public class DbInitializer(AppDbContext context, ILogger<DbInitializer> logger)
         logger.LogInformation(
             "Seed: 1 evento '{Event}', 2 sectores ({S1}/{S2}), {Total} butacas creadas.",
             rockConcert.Name, platea.Name, campo.Name, plateaSeats.Count + campoSeats.Count);
+    }
+    private async Task SeedSimpleEventsAsync(CancellationToken cancellationToken)
+    {
+        var simpleEvents = Enumerable.Range(1, 14).Select(i =>
+            new Event(
+                name: $"Evento {i}",
+                eventDate: DateTime.UtcNow.AddDays(i),
+                venue: $"Lugar {i}",
+                description: $"Evento de prueba {i}",
+                maxReservationsPerUser: 4
+            )
+        );
+
+        await context.Events.AddRangeAsync(simpleEvents, cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
+
+        logger.LogInformation("Seed: 14 eventos simples creados.");
     }
 
     /// <summary>
