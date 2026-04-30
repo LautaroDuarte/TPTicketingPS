@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../api/client";
+<<<<<<< Updated upstream
+=======
+import { toast } from "../components/toast";
+>>>>>>> Stashed changes
 
 export default function PaymentPage() {
   const { reservationId } = useParams();
@@ -13,6 +17,7 @@ export default function PaymentPage() {
   const [secondsLeft, setSecondsLeft] = useState(0);
 
   useEffect(() => {
+<<<<<<< Updated upstream
     api.get(`/api/v1/reservations/${reservationId}`)
       .then(data => {
         setReservation(data);
@@ -24,6 +29,8 @@ export default function PaymentPage() {
 
   // Countdown del timer (visual, basado en lo que devolvió el backend)
   useEffect(() => {
+=======
+>>>>>>> Stashed changes
   api.get(`/api/v1/reservations/${reservationId}`)
     .then(data => {
       setReservation(data);
@@ -36,6 +43,18 @@ export default function PaymentPage() {
     .finally(() => setLoading(false));
 }, [reservationId]);
 
+<<<<<<< Updated upstream
+=======
+  // Countdown del timer (visual, basado en lo que devolvió el backend)
+  useEffect(() => {
+    if (secondsLeft <= 0) return;
+    const timer = setInterval(() => {
+      setSecondsLeft(s => Math.max(0, s - 1));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [secondsLeft]);
+
+>>>>>>> Stashed changes
   const handlePayment = async () => {
   setProcessing(true);
   toast.info("Procesando pago...");

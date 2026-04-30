@@ -86,7 +86,11 @@ export default function SeatsPage() {
         const messages = Object.values(err.details).flat().join(" ");
         toast.error(messages || backendMessage || "Datos inválidos.");
       } else {
+<<<<<<< Updated upstream
         toast.error(backendMessage || "Datos inválidos.");
+=======
+        toast.error(err.message || "Datos inválidos.");
+>>>>>>> Stashed changes
       }
     } else {
       toast.error(backendMessage || "Error inesperado al crear la reserva.");

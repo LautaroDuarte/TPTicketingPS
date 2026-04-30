@@ -19,8 +19,8 @@ public class CreateReservation(
     IAuditLogger auditLogger) : ICreateReservation
 {
     public async Task<ReservationDto> ExecuteAsync(
-        CreateReservationRequest request,
-        CancellationToken cancellationToken = default)
+    CreateReservationRequest request,
+    CancellationToken cancellationToken = default)
     {
         // 1. Validación de formato
         await validator.ValidateAndThrowAsync(request, cancellationToken);
@@ -32,7 +32,12 @@ public class CreateReservation(
                 ["X-User-Id"] = new[] { "Falta el header X-User-Id." }
             });
 
+<<<<<<< Updated upstream
         // 3. Validar que existan usuario
+=======
+        // 3. Validar que el usuario exista ANTES de intentar auditar
+        //    (la FK del AuditLog requiere un userId válido)
+>>>>>>> Stashed changes
         var user = await context.Users
             .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken)
             ?? throw new NotFoundException(nameof(User), userId);
@@ -40,7 +45,11 @@ public class CreateReservation(
         if (!user.IsActive)
             throw new ConflictException("El usuario está inactivo.");
 
+<<<<<<< Updated upstream
         // 4. Auditamos el intento antes de procesarlo, así queda registrado aunque falle
+=======
+        // 4. Recién ahora auditamos el intento, sabiendo que el user existe
+>>>>>>> Stashed changes
         await auditLogger.LogAndSaveAsync(
             action: AuditActions.ReserveAttempt,
             entityType: AuditEntityTypes.Reservation,
@@ -49,8 +58,12 @@ public class CreateReservation(
             details: new { request.EventId, request.SeatIds },
             cancellationToken: cancellationToken);
 
+<<<<<<< Updated upstream
 
         // 5. Validaciones de negocio sobre el evento y los asientos
+=======
+        // 5. Validar evento y asientos
+>>>>>>> Stashed changes
         var @event = await context.Events
             .FirstOrDefaultAsync(e => e.Id == request.EventId, cancellationToken)
             ?? throw new NotFoundException(nameof(Event), request.EventId);
@@ -60,7 +73,11 @@ public class CreateReservation(
             .Where(s => request.SeatIds.Contains(s.Id))
             .ToListAsync(cancellationToken);
 
+<<<<<<< Updated upstream
         // 6. Validaciones de negocio sobre los asientos
+=======
+        // 6. Validaciones sobre los asientos
+>>>>>>> Stashed changes
         if (seats.Count != request.SeatIds.Count)
         {
             var foundIds = seats.Select(s => s.Id).ToHashSet();
@@ -77,7 +94,10 @@ public class CreateReservation(
             throw new NotFoundException(nameof(Seat), string.Join(", ", missing));
         }
 
+<<<<<<< Updated upstream
         // 6a. Que todos pertenezcan al evento solicitado
+=======
+>>>>>>> Stashed changes
         if (seats.Any(s => s.Sector!.EventId != request.EventId))
         {
             throw new Common.Exceptions.ValidationException(new Dictionary<string, string[]>
@@ -86,7 +106,10 @@ public class CreateReservation(
             });
         }
 
+<<<<<<< Updated upstream
         // 6b. Que estén todos disponibles
+=======
+>>>>>>> Stashed changes
         var unavailable = seats.Where(s => s.Status != SeatStatus.Available).ToList();
         if (unavailable.Count > 0)
         {
@@ -107,8 +130,12 @@ public class CreateReservation(
                 string.Join(", ", unavailable.Select(s => s.Id)));
         }
 
+<<<<<<< Updated upstream
         // 7. Respetar el límite de reservas por usuario para este evento
         //  cuántos asientos ya tiene reservados/comprados
+=======
+        // 7. Respetar MaxReservationsPerUser
+>>>>>>> Stashed changes
         var alreadyReserved = await context.Reservations
             .Where(r => r.UserId == userId
                         && (r.Status == ReservationStatus.Pending || r.Status == ReservationStatus.Paid)
@@ -127,13 +154,16 @@ public class CreateReservation(
 
         foreach (var seat in seats)
         {
-            seat.Reserve(reservation.Id);   // cambia Status a Reserved + setea CurrentReservationId
+            seat.Reserve(reservation.Id);
             reservation.AddItem(new ReservationItem(reservation.Id, seat.Id, seat.Sector!.Price));
         }
 
         context.Reservations.Add(reservation);
 
+<<<<<<< Updated upstream
         // 9. Auditamos el éxito (queda en el ChangeTracker, se persiste con el SaveChanges de abajo)
+=======
+>>>>>>> Stashed changes
         auditLogger.Log(
             action: AuditActions.ReserveSuccess,
             entityType: AuditEntityTypes.Reservation,
@@ -148,7 +178,10 @@ public class CreateReservation(
 
         await context.SaveChangesAsync(cancellationToken);
 
+<<<<<<< Updated upstream
         // 10. Devolver el DTO. 
+=======
+>>>>>>> Stashed changes
         return reservation.ToDto(DateTime.UtcNow);
     }
 }

@@ -7,6 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
+// Toastify CSS
+import "toastify-js/src/toastify.css";
+
 import './index.css'
 import App from './App.jsx'
 
