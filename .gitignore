@@ -1,19 +1,26 @@
-# Visual Studio
+## Directorios de compilación
+[Bb]in/
+[Oo]bj/
+dist/
+node_modules/
+
+## Archivos de usuario y herramientas
 .vs/
-
-# Build outputs
-bin/
-obj/
-
-# User files
+.vscode/
+.idea/
 *.user
 *.suo
-
-# Logs / caches
 *.cache
 *.dll
 *.exe
 *.pdb
 
-# Node modules
-node_modules/
+## Logs
+*.log
+
+## Sistema
+.DS_Store
+Thumbs.db
+
+## Archivos temporales de publicación (opcional)
+*.pubxml
