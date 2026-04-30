@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || "https://localhost:39716";
 
 /**
  * Wrapper de fetch que:
@@ -7,22 +7,17 @@ const API_URL = import.meta.env.VITE_API_URL;
  * - Lanza errores con info útil cuando la respuesta no es OK.
  */
 async function request(path, options = {}) {
-  // ================================
-  // MOCK AUTH (TEMPORAL)
-  // Mientras no haya login/JWT,
-  // usamos un userId fijo para poder
-  // probar reservas.
-  // ================================
-  const userId = localStorage.getItem("userId") || "1";
+  const userId = localStorage.getItem("userId");
 
-  // ================================
-  // HEADERS REQUEST
-  // ================================
   const headers = {
     "Content-Type": "application/json",
-    "X-User-Id": userId, // ⚠️ MOCK: se reemplaza por JWT luego
     ...options.headers,
   };
+
+  // Mientras no haya auth real, mandamos el userId desde localStorage
+  if (userId) {
+    headers["X-User-Id"] = userId;
+  }
 
   const response = await fetch(`${API_URL}${path}`, {
     ...options,
@@ -30,17 +25,14 @@ async function request(path, options = {}) {
   });
 
   // Si la respuesta no tiene contenido (204 No Content), devolvemos null
-  if (response.status === 204) {
-    return null;
-  }
+  if (response.status === 204) return null;
 
-  const data = await response.json();
+  const data = await response.json().catch(() => null);
 
   if (!response.ok) {
-    // Lanzamos error con la info que devolvió el backend
-    const error = new Error(data.message || "Error en la petición");
+    const error = new Error(data?.message || "Error en la petición");
     error.status = response.status;
-    error.details = data.details;
+    error.details = data?.details;
     error.payload = data;
     throw error;
   }
@@ -48,12 +40,9 @@ async function request(path, options = {}) {
   return data;
 }
 
-// Métodos cómodos
 export const api = {
   get: (path) => request(path, { method: "GET" }),
-  post: (path, body) =>
-    request(path, { method: "POST", body: JSON.stringify(body) }),
-  put: (path, body) =>
-    request(path, { method: "PUT", body: JSON.stringify(body) }),
+  post: (path, body) => request(path, { method: "POST", body: JSON.stringify(body) }),
+  put: (path, body) => request(path, { method: "PUT", body: JSON.stringify(body) }),
   delete: (path) => request(path, { method: "DELETE" }),
 };
