@@ -52,19 +52,26 @@ Se utiliza SQL Server Express.
 
 ---
 
-# 🌱 Seed de datos
+🌱 Seed de datos
 
-El sistema incluye un seed de prueba:
+El sistema incluye un conjunto de datos iniciales (seed) diseñado para facilitar el desarrollo, testing y validación del modelo de dominio.
 
-* 14 eventos base (datos simples para testing rápido)
-* 1 evento completo con:
+📌 Contenido del seed
 
-  * sectores
-  * filas
-  * asientos
-  * estados de disponibilidad
+Se generan 7 eventos completos, cada uno con su estructura interna:
 
-Este enfoque fue utilizado para acelerar el desarrollo iterativo del sistema.
+Sectores
+Filas
+Asientos
+Estados de disponibilidad
+🎯 Objetivo
+
+Este seed permite:
+
+Validar la correcta construcción del layout de cada evento
+Probar la lógica de asignación y disponibilidad de asientos
+Simular escenarios realistas de ocupación
+Facilitar pruebas manuales y debugging sin necesidad de cargar datos desde cero
 
 ---
 
