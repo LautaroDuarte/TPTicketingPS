@@ -17,6 +17,8 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<ReservationItem> ReservationItems => Set<ReservationItem>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
 
+    
+
     public Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
         => Database.BeginTransactionAsync(cancellationToken);
 

@@ -20,11 +20,6 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString, sql =>
             {
-                sql.EnableRetryOnFailure(
-                    maxRetryCount: 3,
-                    maxRetryDelay: TimeSpan.FromSeconds(5),
-                    errorNumbersToAdd: null);
-
                 sql.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
             }));
 

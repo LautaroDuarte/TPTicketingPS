@@ -15,19 +15,15 @@ public class SeatConfiguration : IEntityTypeConfiguration<Seat>
             .IsRequired()
             .HasMaxLength(10);
 
-        // Guardamos el enum como string en la DB:
-        // - Queries legibles ("SELECT * WHERE Status = 'Available'")
-        // - Agregar un nuevo estado no rompe datos existentes
+        // Convertimos el enum SeatStatus a string para facilitar la lectura en la base de datos y evitar problemas de compatibilidad.
         builder.Property(s => s.Status)
             .HasConversion<string>()
             .HasMaxLength(20)
             .IsRequired();
 
-        // Optimistic Locking: cada UPDATE revisa Version.
-        // Si cambió entre el read y el write, EF tira DbUpdateConcurrencyException
-        // y lo traducimos a 409 Conflict.
+        // Usamos un campo de versión para manejar concurrencia optimista. Esto es crucial para evitar conflictos al reservar asientos.
         builder.Property(s => s.Version)
-            .IsConcurrencyToken();
+            .IsRowVersion();
 
         // Índice para el mapa de asientos y para el job de expiración.
         builder.HasIndex(s => new { s.SectorId, s.Status });
