@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TPTicketingPS.Application.Payments.Dtos;
+using TPTicketingPS.Application.Payments.UseCases.ProcessPayment;
 using TPTicketingPS.Application.Reservations.Dtos;
 using TPTicketingPS.Application.Reservations.UseCases.CreateReservation;
 using TPTicketingPS.Application.Reservations.UseCases.GetReservationById;
@@ -10,7 +12,8 @@ namespace TPTicketingPS.API.Controllers.V1;
 [Produces("application/json")]
 public class ReservationsController(
     ICreateReservation createReservation,
-    IGetReservationById getReservationById) : ControllerBase
+    IGetReservationById getReservationById,
+    IProcessPayment processPayment) : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(ReservationDto), StatusCodes.Status201Created)]
@@ -39,4 +42,20 @@ public class ReservationsController(
         var reservation = await getReservationById.ExecuteAsync(reservationId, cancellationToken);
         return Ok(reservation);
     }
+
+
+    [HttpPost("{reservationId:guid}/payments")]
+    [ProducesResponseType(typeof(PaymentReceiptDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<ActionResult<PaymentReceiptDto>> Pay(
+        [FromRoute] Guid reservationId,
+        [FromBody] ProcessPaymentRequest request,
+        CancellationToken cancellationToken)
+    {
+        var receipt = await processPayment.ExecuteAsync(reservationId, request, cancellationToken);
+        return Ok(receipt);
+    }
+
 }

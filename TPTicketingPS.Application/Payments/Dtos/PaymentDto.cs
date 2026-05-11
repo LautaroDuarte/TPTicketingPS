@@ -4,6 +4,8 @@ public sealed record PaymentReceiptDto(
     Guid ReservationId,
     DateTime PaidAt,
     decimal TotalAmount,
+    string PaymentMethod,
+    string CardNumberLast4,
     IReadOnlyCollection<PaidSeatDto> Seats);
 
 public sealed record PaidSeatDto(
@@ -12,7 +14,3 @@ public sealed record PaidSeatDto(
     string RowIdentifier,
     int SeatNumber,
     decimal UnitPrice);
-
-public sealed record ProcessPaymentRequest(
-    string CardHolder,
-    string CardNumberLast4);
