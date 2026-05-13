@@ -4,6 +4,7 @@ import EventDetailsPage from "./pages/EventDetailsPage";
 import SeatsPage from "./pages/SeatsPage";
 import PaymentPage from "./pages/PaymentPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
+import LoginPage from "./pages/LoginPage";
 import Layout from "./components/Layout";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Navigate to="/events" replace />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/:eventId" element={<EventDetailsPage />} />
         <Route path="/events/:eventId/seats" element={<SeatsPage />} />

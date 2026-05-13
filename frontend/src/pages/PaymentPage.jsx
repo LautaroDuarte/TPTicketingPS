@@ -12,6 +12,10 @@ export default function PaymentPage() {
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const [processing, setProcessing] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(0);
+  const [cardHolder, setCardHolder] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvv, setCvv] = useState("");
 
   useEffect(() => {
   api.get(`/api/v1/reservations/${reservationId}`)
@@ -37,14 +41,35 @@ export default function PaymentPage() {
 
   const handlePayment = async () => {
   setProcessing(true);
-  toast.info("Procesando pago...");
 
-  setTimeout(() => {
+  try {
+    const receipt = await api.post(
+      `/api/v1/reservations/${reservationId}/payments`,
+      {
+        paymentMethod,
+        cardHolder,
+        cardNumber,
+        expirationDate,
+        cvv,
+      }
+    );
+
     toast.success("¡Pago confirmado!");
     navigate(`/reservations/${reservationId}/confirmation`, {
-      state: { paymentMethod, reservation }
+      state: { paymentMethod, reservation, receipt },
     });
-  }, 1500);
+  } catch (err) {
+    if (err.status === 409) {
+      toast.warning(err.message || "No se pudo procesar el pago.");
+    } else if (err.status === 400 && err.details) {
+      const messages = Object.values(err.details).flat().join(" ");
+      toast.error(messages || "Datos de pago inválidos.");
+    } else {
+      toast.error(err.message || "Error al procesar el pago.");
+    }
+  } finally {
+    setProcessing(false);
+  }
 };
 
   const formatTime = (s) => {
@@ -147,8 +172,64 @@ export default function PaymentPage() {
 
             {/* Form dinámico según método (solo simulación visual) */}
             <div className="mt-4">
-              {paymentMethod === "creditCard" && <CreditCardForm />}
-              {paymentMethod === "mercadoPago" && <MercadoPagoForm />}
+              {paymentMethod === "creditCard" && (
+  <div className="row g-3">
+    <div className="col-12">
+      <label className="form-label small">Número de tarjeta</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="4111 1111 1111 1111"
+        value={cardNumber}
+        onChange={(e) => setCardNumber(e.target.value)}
+      />
+    </div>
+    <div className="col-12">
+      <label className="form-label small">Titular</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Como figura en la tarjeta"
+        value={cardHolder}
+        onChange={(e) => setCardHolder(e.target.value)}
+      />
+    </div>
+    <div className="col-6">
+      <label className="form-label small">Vencimiento</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="MM/AA"
+        value={expirationDate}
+        onChange={(e) => setExpirationDate(e.target.value)}
+      />
+    </div>
+    <div className="col-6">
+      <label className="form-label small">CVV</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="123"
+        value={cvv}
+        onChange={(e) => setCvv(e.target.value)}
+      />
+    </div>
+  </div>
+)}
+              {paymentMethod === "mercadoPago" && (() => {
+  // Seteamos datos default para que el backend no se queje
+  if (!cardHolder) setCardHolder("MercadoPago User");
+  if (!cardNumber) setCardNumber("4111111111111111");
+  if (!expirationDate) setExpirationDate("12/26");
+  if (!cvv) setCvv("000");
+  return (
+    <div className="alert alert-info mb-0">
+      <p className="mb-0 small">
+        Serás redirigido a Mercado Pago para completar el pago.
+      </p>
+    </div>
+  );
+})()}
               {paymentMethod === "transfer" && <TransferForm />}
             </div>
           </div>

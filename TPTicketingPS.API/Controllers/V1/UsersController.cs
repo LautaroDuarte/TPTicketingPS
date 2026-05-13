@@ -4,6 +4,7 @@ using TPTicketingPS.Application.Reservations.UseCases.GetUserReservations;
 using TPTicketingPS.Application.Users.Dtos;
 using TPTicketingPS.Application.Users.UseCases.CreateUser;
 using TPTicketingPS.Application.Users.UseCases.GetUserById;
+using TPTicketingPS.Application.Users.UseCases.LoginUser;
 
 namespace TPTicketingPS.API.Controllers.V1;
 
@@ -13,7 +14,8 @@ namespace TPTicketingPS.API.Controllers.V1;
 public class UsersController(
     ICreateUser createUser,
     IGetUserById getUserById,
-    IGetUserReservations getUserReservations) : ControllerBase
+    IGetUserReservations getUserReservations,
+    ILoginUser loginUser) : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(typeof(UserDto), StatusCodes.Status201Created)]
@@ -54,4 +56,17 @@ public class UsersController(
         var reservations = await getUserReservations.ExecuteAsync(userId, parameters, cancellationToken);
         return Ok(reservations);
     }
+
+    [HttpPost("login")]
+    [ProducesResponseType(typeof(UserDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<ActionResult<UserDto>> Login(
+        [FromBody] LoginRequest request,
+        CancellationToken cancellationToken)
+    {
+        var user = await loginUser.ExecuteAsync(request, cancellationToken);
+        return Ok(user);
+    }
+
 }

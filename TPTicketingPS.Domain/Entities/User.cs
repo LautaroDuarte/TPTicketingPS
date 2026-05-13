@@ -18,6 +18,7 @@ public class User : BaseEntity
     public string PasswordHash { get; private set; } = string.Empty;
 
     public bool IsActive { get; private set; } = true; // soft delete
+    public string Role { get; private set;  } = "user";
 
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 
@@ -28,12 +29,13 @@ public class User : BaseEntity
 
     private User() { } // EF Core
 
-    public User(string name, string email, string passwordHash, string? phoneNumber = null)
+    public User(string name, string email, string passwordHash, string? phoneNumber = null, string role = "user")
     {
         Name = name;
         Email = email;
         PasswordHash = passwordHash;
         PhoneNumber = phoneNumber;
+        Role = role;
     }
 
     public void ChangePassword(string newHash)

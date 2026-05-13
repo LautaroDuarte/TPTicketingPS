@@ -38,12 +38,14 @@ public class DbInitializer(AppDbContext context, ILogger<DbInitializer> logger)
             new User(
                 name: "Usuario Demo",
                 email: "demo@ticketing.local",
-                passwordHash: "demo-hash",
-                phoneNumber: "+54 11 0000-0000"),
+                passwordHash: "demo123",
+                phoneNumber: "+54 11 0000-0000",
+                role: "user"),
             new User(
                 name: "Admin Demo",
                 email: "admin@ticketing.local",
-                passwordHash: "admin-hash")
+                passwordHash: "admin123",
+                role: "admin")
         };
 
         await context.Users.AddRangeAsync(users, cancellationToken);
