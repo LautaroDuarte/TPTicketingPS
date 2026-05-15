@@ -34,7 +34,8 @@ public class CreateUser(
             name: request.Name,
             email: request.Email,
             passwordHash: "not-set",
-            phoneNumber: request.PhoneNumber);
+            phoneNumber: request.PhoneNumber,
+            role : request.Role ?? "user");
 
         context.Users.Add(user);
         await context.SaveChangesAsync(cancellationToken);

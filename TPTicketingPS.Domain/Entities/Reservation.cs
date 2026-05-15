@@ -44,4 +44,12 @@ public class Reservation
 
     public bool IsExpired(DateTime utcNow) =>
         Status == ReservationStatus.Pending && utcNow >= ExpiresAt;
+
+    public void Cancel()
+    {
+        if (Status != ReservationStatus.Pending)
+            throw new InvalidOperationException($"No se puede cancelar una reserva en estado {Status}.");
+
+        Status = ReservationStatus.Cancelled;
+    }
 }

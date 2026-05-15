@@ -11,5 +11,6 @@ internal static class UserMappings
         Email: user.Email,
         PhoneNumber: user.PhoneNumber,
         IsActive: user.IsActive,
+        Role: user.Role,
         CreatedAt: user.CreatedAt);
 }

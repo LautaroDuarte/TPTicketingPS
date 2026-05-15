@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../api/client";
 import { toast } from "../components/toast";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 export default function PaymentPage() {
   const { reservationId } = useParams();
@@ -12,6 +12,12 @@ export default function PaymentPage() {
   const [paymentMethod, setPaymentMethod] = useState("creditCard");
   const [processing, setProcessing] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(0);
+  const [cardHolder, setCardHolder] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [expirationDate, setExpirationDate] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
 
   useEffect(() => {
   api.get(`/api/v1/reservations/${reservationId}`)
@@ -37,14 +43,49 @@ export default function PaymentPage() {
 
   const handlePayment = async () => {
   setProcessing(true);
-  toast.info("Procesando pago...");
 
-  setTimeout(() => {
+  try {
+    const receipt = await api.post(
+      `/api/v1/reservations/${reservationId}/payments`,
+      {
+        paymentMethod,
+        cardHolder,
+        cardNumber,
+        expirationDate,
+        cvv,
+      }
+    );
+
     toast.success("¡Pago confirmado!");
     navigate(`/reservations/${reservationId}/confirmation`, {
-      state: { paymentMethod, reservation }
+      state: { paymentMethod, reservation, receipt },
     });
-  }, 1500);
+  } catch (err) {
+    if (err.status === 409) {
+      toast.warning(err.message || "No se pudo procesar el pago.");
+    } else if (err.status === 400 && err.details) {
+      const messages = Object.values(err.details).flat().join(" ");
+      toast.error(messages || "Datos de pago inválidos.");
+    } else {
+      toast.error(err.message || "Error al procesar el pago.");
+    }
+  } finally {
+    setProcessing(false);
+  }
+};
+
+const handleCancelReservation = async () => {
+  setCancelling(true);
+  try {
+    await api.delete(`/api/v1/reservations/${reservationId}`);
+    toast.success("Reserva cancelada. Los asientos fueron liberados.");
+    setShowCancelModal(false);
+    navigate(`/events`);
+  } catch (err) {
+    toast.error(err.message || "Error al cancelar la reserva.");
+  } finally {
+    setCancelling(false);
+  }
 };
 
   const formatTime = (s) => {
@@ -74,6 +115,7 @@ export default function PaymentPage() {
         </h2>
 
         {/* Timer */}
+
         <div className={`alert ${expired ? "alert-danger" : "alert-info"} d-flex align-items-center justify-content-between`}>
           <div>
             <i className="bi bi-clock me-2"></i>
@@ -147,8 +189,64 @@ export default function PaymentPage() {
 
             {/* Form dinámico según método (solo simulación visual) */}
             <div className="mt-4">
-              {paymentMethod === "creditCard" && <CreditCardForm />}
-              {paymentMethod === "mercadoPago" && <MercadoPagoForm />}
+              {paymentMethod === "creditCard" && (
+  <div className="row g-3">
+    <div className="col-12">
+      <label className="form-label small">Número de tarjeta</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="4111 1111 1111 1111"
+        value={cardNumber}
+        onChange={(e) => setCardNumber(e.target.value)}
+      />
+    </div>
+    <div className="col-12">
+      <label className="form-label small">Titular</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Como figura en la tarjeta"
+        value={cardHolder}
+        onChange={(e) => setCardHolder(e.target.value)}
+      />
+    </div>
+    <div className="col-6">
+      <label className="form-label small">Vencimiento</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="MM/AA"
+        value={expirationDate}
+        onChange={(e) => setExpirationDate(e.target.value)}
+      />
+    </div>
+    <div className="col-6">
+      <label className="form-label small">CVV</label>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="123"
+        value={cvv}
+        onChange={(e) => setCvv(e.target.value)}
+      />
+    </div>
+  </div>
+)}
+              {paymentMethod === "mercadoPago" && (() => {
+  // Seteamos datos default para que el backend no se queje
+  if (!cardHolder) setCardHolder("MercadoPago User");
+  if (!cardNumber) setCardNumber("4111111111111111");
+  if (!expirationDate) setExpirationDate("12/26");
+  if (!cvv) setCvv("000");
+  return (
+    <div className="alert alert-info mb-0">
+      <p className="mb-0 small">
+        Serás redirigido a Mercado Pago para completar el pago.
+      </p>
+    </div>
+  );
+})()}
               {paymentMethod === "transfer" && <TransferForm />}
             </div>
           </div>
@@ -156,10 +254,11 @@ export default function PaymentPage() {
 
         <div className="d-flex gap-2 justify-content-end flex-wrap">
           <button
-            className="btn btn-outline-primary"
-            onClick={() => navigate(-1)}
+            className="btn btn-outline-secondary"
+            onClick={() => setShowCancelModal(true)}
             disabled={processing}
           >
+            <i className="bi bi-x-lg me-1"></i>
             Cancelar
           </button>
           <button
@@ -181,8 +280,65 @@ export default function PaymentPage() {
           </button>
         </div>
       </div>
+      
+      {showCancelModal && (
+        <div className="modal d-block" tabIndex={-1} style={{ background: "rgba(0,0,0,0.6)" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content text-white" style={{ background: "var(--color-6)" }}>
+              <div className="modal-header border-0">
+                <h5 className="modal-title">
+                  <i className="bi bi-exclamation-triangle text-warning me-2"></i>
+                  Cancelar reserva
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close btn-close-white"
+                  onClick={() => setShowCancelModal(false)}
+                  disabled={cancelling}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p className="mb-2">
+                  ¿Estás seguro de que querés cancelar tu reserva?
+                </p>
+                <p className="small mb-0" style={{ opacity: 0.8 }}>
+                  Los asientos seleccionados serán liberados inmediatamente y
+                  cualquier otro usuario podrá reservarlos.
+                </p>
+              </div>
+              <div className="modal-footer border-0">
+                <button
+                  className="btn btn-outline-light"
+                  onClick={() => setShowCancelModal(false)}
+                  disabled={cancelling}
+                >
+                  Volver al pago
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={handleCancelReservation}
+                  disabled={cancelling}
+                >
+                  {cancelling ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2"></span>
+                      Cancelando...
+                    </>
+                  ) : (
+                    <>
+                      <i className="bi bi-trash me-1"></i>
+                      Sí, cancelar reserva
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
+  
 }
 
 function PaymentOption({ value, selected, onSelect, icon, label, description }) {

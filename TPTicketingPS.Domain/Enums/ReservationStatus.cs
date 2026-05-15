@@ -10,6 +10,7 @@ namespace TPTicketingPS.Domain.Enums
     {
         Pending = 0,
         Paid = 1,
-        Expired = 2
+        Expired = 2,
+        Cancelled = 3
     }
 }

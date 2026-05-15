@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Collections.Generic;
 using TPTicketingPS.Domain.Entities;
@@ -14,7 +15,7 @@ public interface IAppDbContext
     DbSet<Reservation> Reservations { get; }
     DbSet<ReservationItem> ReservationItems { get; }
     DbSet<AuditLog> AuditLogs { get; }
-
+    ChangeTracker ChangeTracker { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
 }

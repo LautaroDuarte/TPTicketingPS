@@ -6,4 +6,5 @@ public sealed record UserDto(
     string Email,
     string? PhoneNumber,
     bool IsActive,
+    string Role,
     DateTime CreatedAt);

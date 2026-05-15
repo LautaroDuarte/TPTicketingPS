@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Infrastructure.Auditing;
 using TPTicketingPS.Infrastructure.Persistence;
+using TPTicketingPS.Infrastructure.BackgroundJobs;
 
 namespace TPTicketingPS.Infrastructure;
 
@@ -20,11 +21,6 @@ public static class DependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString, sql =>
             {
-                sql.EnableRetryOnFailure(
-                    maxRetryCount: 3,
-                    maxRetryDelay: TimeSpan.FromSeconds(5),
-                    errorNumbersToAdd: null);
-
                 sql.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
             }));
 
@@ -32,6 +28,7 @@ public static class DependencyInjection
         services.AddScoped<DbInitializer>();
 
         services.AddScoped<IAuditLogger, AuditLogger>();
+        services.AddHostedService<ReservationExpirationJob>();
 
         return services;
     }

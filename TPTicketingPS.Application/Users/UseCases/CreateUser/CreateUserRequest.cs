@@ -3,4 +3,5 @@
 public sealed record CreateUserRequest(
     string Name,
     string Email,
-    string? PhoneNumber);
+    string? PhoneNumber,
+    string? Role = "user");

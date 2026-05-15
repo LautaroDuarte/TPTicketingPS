@@ -4,19 +4,23 @@ import EventDetailsPage from "./pages/EventDetailsPage";
 import SeatsPage from "./pages/SeatsPage";
 import PaymentPage from "./pages/PaymentPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
+import LoginPage from "./pages/LoginPage";
 import Layout from "./components/Layout";
+import MyReservationsPage from "./pages/MyReservationsPage";
 
 function App() {
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Navigate to="/events" replace />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/events/:eventId" element={<EventDetailsPage />} />
         <Route path="/events/:eventId/seats" element={<SeatsPage />} />
         <Route path="/reservations/:reservationId/payment" element={<PaymentPage />} />
         <Route path="/reservations/:reservationId/confirmation" element={<ConfirmationPage />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/my-reservations" element={<MyReservationsPage />} />
       </Routes>
     </Layout>
   );

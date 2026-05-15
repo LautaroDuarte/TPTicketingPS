@@ -161,20 +161,18 @@ export default function SeatsPage() {
       <h2 className="mb-3">{processedData.eventName}</h2>
 
       {!userId && (
-        <div className="alert alert-warning d-flex align-items-center">
-          <i className="bi bi-exclamation-triangle me-2 fs-5"></i>
-          <div className="flex-grow-1">
-            <strong>No estás identificado.</strong>
-            <br />
-            <small>
-              Para hacer una reserva, abrí la consola del navegador (F12) y ejecutá:{" "}
-              <code style={{ background: "rgba(0,0,0,0.3)", padding: "2px 6px", borderRadius: 4 }}>
-                localStorage.setItem('userId', '1')
-              </code>
-            </small>
-          </div>
+      <div className="alert alert-warning d-flex align-items-center">
+        <i className="bi bi-exclamation-triangle me-2 fs-5"></i>
+        <div className="flex-grow-1">
+          <strong>No estás identificado.</strong>
+          <br />
+          <small>
+            Para hacer una reserva necesitás{" "}
+            <a href="/login" className="alert-link">iniciar sesión</a>.
+          </small>
         </div>
-      )}
+      </div>
+    )}
 
       <div className="d-flex gap-3 mb-4 flex-wrap">
         <Legend className="available" label="Disponible" />

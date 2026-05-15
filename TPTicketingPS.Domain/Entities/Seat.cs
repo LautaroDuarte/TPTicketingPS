@@ -18,7 +18,7 @@ public class Seat
 
     public Guid? CurrentReservationId { get; private set; }
 
-    public int Version { get; private set; }
+    public byte[] Version { get; private set; } = Array.Empty<byte>();
 
     public Seat(int sectorId, string rowIdentifier, int seatNumber)
     {
