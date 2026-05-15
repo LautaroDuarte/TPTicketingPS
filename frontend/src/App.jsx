@@ -6,6 +6,7 @@ import PaymentPage from "./pages/PaymentPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import LoginPage from "./pages/LoginPage";
 import Layout from "./components/Layout";
+import MyReservationsPage from "./pages/MyReservationsPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/reservations/:reservationId/payment" element={<PaymentPage />} />
         <Route path="/reservations/:reservationId/confirmation" element={<ConfirmationPage />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/my-reservations" element={<MyReservationsPage />} />
       </Routes>
     </Layout>
   );

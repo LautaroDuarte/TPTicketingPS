@@ -2,6 +2,7 @@
 using TPTicketingPS.Application.Payments.Dtos;
 using TPTicketingPS.Application.Payments.UseCases.ProcessPayment;
 using TPTicketingPS.Application.Reservations.Dtos;
+using TPTicketingPS.Application.Reservations.UseCases.CancelReservation;
 using TPTicketingPS.Application.Reservations.UseCases.CreateReservation;
 using TPTicketingPS.Application.Reservations.UseCases.GetReservationById;
 
@@ -13,7 +14,9 @@ namespace TPTicketingPS.API.Controllers.V1;
 public class ReservationsController(
     ICreateReservation createReservation,
     IGetReservationById getReservationById,
-    IProcessPayment processPayment) : ControllerBase
+    IProcessPayment processPayment,
+    ICancelReservation cancelReservation) : ControllerBase
+
 {
     [HttpPost]
     [ProducesResponseType(typeof(ReservationDto), StatusCodes.Status201Created)]
@@ -56,6 +59,18 @@ public class ReservationsController(
     {
         var receipt = await processPayment.ExecuteAsync(reservationId, request, cancellationToken);
         return Ok(receipt);
+    }
+
+    [HttpDelete("{reservationId:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<IActionResult> Cancel(
+        [FromRoute] Guid reservationId,
+        CancellationToken cancellationToken)
+    {
+        await cancelReservation.ExecuteAsync(reservationId, cancellationToken);
+        return NoContent();
     }
 
 }

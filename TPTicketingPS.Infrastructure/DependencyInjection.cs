@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Infrastructure.Auditing;
 using TPTicketingPS.Infrastructure.Persistence;
+using TPTicketingPS.Infrastructure.BackgroundJobs;
 
 namespace TPTicketingPS.Infrastructure;
 
@@ -27,6 +28,7 @@ public static class DependencyInjection
         services.AddScoped<DbInitializer>();
 
         services.AddScoped<IAuditLogger, AuditLogger>();
+        services.AddHostedService<ReservationExpirationJob>();
 
         return services;
     }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { api } from "../api/client";
 import { toast } from "../components/toast";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 export default function PaymentPage() {
   const { reservationId } = useParams();
@@ -16,6 +16,8 @@ export default function PaymentPage() {
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCvv] = useState("");
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelling, setCancelling] = useState(false);
 
   useEffect(() => {
   api.get(`/api/v1/reservations/${reservationId}`)
@@ -72,6 +74,20 @@ export default function PaymentPage() {
   }
 };
 
+const handleCancelReservation = async () => {
+  setCancelling(true);
+  try {
+    await api.delete(`/api/v1/reservations/${reservationId}`);
+    toast.success("Reserva cancelada. Los asientos fueron liberados.");
+    setShowCancelModal(false);
+    navigate(`/events`);
+  } catch (err) {
+    toast.error(err.message || "Error al cancelar la reserva.");
+  } finally {
+    setCancelling(false);
+  }
+};
+
   const formatTime = (s) => {
     const m = Math.floor(s / 60);
     const sec = s % 60;
@@ -99,6 +115,7 @@ export default function PaymentPage() {
         </h2>
 
         {/* Timer */}
+
         <div className={`alert ${expired ? "alert-danger" : "alert-info"} d-flex align-items-center justify-content-between`}>
           <div>
             <i className="bi bi-clock me-2"></i>
@@ -237,10 +254,11 @@ export default function PaymentPage() {
 
         <div className="d-flex gap-2 justify-content-end flex-wrap">
           <button
-            className="btn btn-outline-primary"
-            onClick={() => navigate(-1)}
+            className="btn btn-outline-secondary"
+            onClick={() => setShowCancelModal(true)}
             disabled={processing}
           >
+            <i className="bi bi-x-lg me-1"></i>
             Cancelar
           </button>
           <button
@@ -262,8 +280,65 @@ export default function PaymentPage() {
           </button>
         </div>
       </div>
+      
+      {showCancelModal && (
+        <div className="modal d-block" tabIndex={-1} style={{ background: "rgba(0,0,0,0.6)" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content text-white" style={{ background: "var(--color-6)" }}>
+              <div className="modal-header border-0">
+                <h5 className="modal-title">
+                  <i className="bi bi-exclamation-triangle text-warning me-2"></i>
+                  Cancelar reserva
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close btn-close-white"
+                  onClick={() => setShowCancelModal(false)}
+                  disabled={cancelling}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p className="mb-2">
+                  ¿Estás seguro de que querés cancelar tu reserva?
+                </p>
+                <p className="small mb-0" style={{ opacity: 0.8 }}>
+                  Los asientos seleccionados serán liberados inmediatamente y
+                  cualquier otro usuario podrá reservarlos.
+                </p>
+              </div>
+              <div className="modal-footer border-0">
+                <button
+                  className="btn btn-outline-light"
+                  onClick={() => setShowCancelModal(false)}
+                  disabled={cancelling}
+                >
+                  Volver al pago
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={handleCancelReservation}
+                  disabled={cancelling}
+                >
+                  {cancelling ? (
+                    <>
+                      <span className="spinner-border spinner-border-sm me-2"></span>
+                      Cancelando...
+                    </>
+                  ) : (
+                    <>
+                      <i className="bi bi-trash me-1"></i>
+                      Sí, cancelar reserva
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
+  
 }
 
 function PaymentOption({ value, selected, onSelect, icon, label, description }) {
