@@ -1,23 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using TPTicketingPS.Application.Common.Exceptions;
 using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Application.Seats.Dtos;
+using TPTicketingPS.Domain.Entities;
 
 namespace TPTicketingPS.Application.Seats;
 
-public class GetSeats(IAppDbContext context) : IGetSeats
+public class GetSeats(ISeatRepository seatRepository, IEventRepository eventRepository) : IGetSeats
 {
     public async Task<SeatMapDto> ExecuteAsync(
         int eventId,
         CancellationToken cancellationToken)
     {
-        var eventEntity = await context.Events
-            .FirstOrDefaultAsync(e => e.Id == eventId, cancellationToken)
-            ?? throw new Exception("Event not found");
 
-        var seats = await context.Seats
-            .Include(s => s.Sector)
-            .Where(s => s.Sector!.EventId == eventId)
-            .ToListAsync(cancellationToken);
+        var eventEntity = await eventRepository.GetByIdAsync(eventId, cancellationToken)
+            ?? throw new NotFoundException(nameof(Event), eventId);
+
+        var seats = await seatRepository.GetByEventIdAsync(eventId, cancellationToken);
 
         var grouped = seats
             .GroupBy(s => s.Sector!)

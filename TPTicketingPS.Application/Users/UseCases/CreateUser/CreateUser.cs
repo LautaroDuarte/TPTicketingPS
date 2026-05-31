@@ -9,6 +9,7 @@ namespace TPTicketingPS.Application.Users.UseCases.CreateUser;
 
 public class CreateUser(
     IAppDbContext context,
+    IUserRepository userRepository,
     IValidator<CreateUserRequest> validator) : ICreateUser
 {
     public async Task<UserDto> ExecuteAsync(
@@ -19,9 +20,7 @@ public class CreateUser(
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
         // Validación de email unico
-        var emailAlreadyUsed = await context.Users
-            .AsNoTracking()
-            .AnyAsync(u => u.Email == request.Email, cancellationToken);
+        var emailAlreadyUsed = await userRepository.ExistsByEmailAsync(request.Email, cancellationToken);
 
         if (emailAlreadyUsed)
         {
@@ -37,7 +36,7 @@ public class CreateUser(
             phoneNumber: request.PhoneNumber,
             role : request.Role ?? "user");
 
-        context.Users.Add(user);
+        await userRepository.AddAsync(user, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
 
         return user.ToDto();

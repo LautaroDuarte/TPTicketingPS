@@ -1,33 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../api/client";
+import { useAuth } from "../hooks/useAuth";
 import { toast } from "../components/toast";
+import Spinner from "../components/Spinner";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { login, loading } = useAuth();
+
+  // email/password son estado de formulario (UI), quedan bien en la Page.
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
     try {
-      const user = await api.post("/api/v1/users/login", { email, password });
-
-      // Guardar en localStorage
-      localStorage.setItem("userId", user.id);
-      localStorage.setItem("userName", user.name);
-      localStorage.setItem("userRole", user.role);
-      localStorage.setItem("userEmail", user.email);
-
+      const user = await login({ email, password });
       toast.success(`Bienvenido, ${user.name}`);
       navigate("/events");
     } catch (err) {
       toast.error(err.message || "Error al iniciar sesión");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -42,7 +34,9 @@ export default function LoginPage() {
                 style={{ fontSize: 48, color: "var(--color-3)" }}
               ></i>
               <h3 className="mt-2">Ticketing</h3>
-              <p className="text-muted small">Iniciá sesión para continuar</p>
+              <p className="text-overridden-muted small">
+                Iniciá sesión para continuar
+              </p>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -77,7 +71,7 @@ export default function LoginPage() {
               >
                 {loading ? (
                   <>
-                    <span className="spinner-border spinner-border-sm me-2"></span>
+                    <Spinner small className="me-2" />
                     Ingresando...
                   </>
                 ) : (
@@ -89,17 +83,24 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-4 p-3" style={{
-              background: "rgba(255,255,255,0.05)",
-              borderRadius: 8,
-              fontSize: 13
-            }}>
-              <p className="mb-1"><strong>Usuarios de prueba:</strong></p>
+            <div
+              className="mt-4 p-3"
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                borderRadius: 8,
+                fontSize: 13,
+              }}
+            >
               <p className="mb-1">
-                <code>demo@ticketing.local</code> / <code>demo123</code> (usuario)
+                <strong>Usuarios de prueba:</strong>
+              </p>
+              <p className="mb-1">
+                <code>demo@ticketing.local</code> / <code>demo123</code>{" "}
+                (usuario)
               </p>
               <p className="mb-0">
-                <code>admin@ticketing.local</code> / <code>admin123</code> (admin)
+                <code>admin@ticketing.local</code> / <code>admin123</code>{" "}
+                (admin)
               </p>
             </div>
           </div>

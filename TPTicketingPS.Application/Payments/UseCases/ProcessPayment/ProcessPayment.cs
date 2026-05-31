@@ -17,6 +17,7 @@ public class ProcessPayment(
     IAppDbContext context,
     IValidator<ProcessPaymentRequest> validator,
     ICurrentUser currentUser,
+    IReservationRepository reservationRepository,
     IAuditLogger auditLogger) : IProcessPayment
 {
     public async Task<PaymentReceiptDto> ExecuteAsync(
@@ -44,11 +45,7 @@ public class ProcessPayment(
             cancellationToken: cancellationToken);
 
         // 4. Cargar reserva con sus items y los seats relacionados (todo en una query)
-        var reservation = await context.Reservations
-            .Include(r => r.Items)
-                .ThenInclude(i => i.Seat!)
-                .ThenInclude(s => s.Sector!)
-            .FirstOrDefaultAsync(r => r.Id == reservationId, cancellationToken)
+        var reservation = await reservationRepository.GetByIdWithItemsAndSeatsAsync(reservationId, cancellationToken)
             ?? throw new NotFoundException(nameof(Reservation), reservationId);
 
         // 5. Validaciones de negocio

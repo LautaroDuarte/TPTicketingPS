@@ -10,7 +10,7 @@ namespace TPTicketingPS.Application.Users.UseCases.LoginUser;
 /// Login simulado: valida email + password contra la DB.
 /// </summary>
 public class LoginUser(
-    IAppDbContext context,
+    IUserRepository userRepository,
     IValidator<LoginRequest> validator) : ILoginUser
 {
     public async Task<UserDto> ExecuteAsync(
@@ -19,9 +19,7 @@ public class LoginUser(
     {
         await validator.ValidateAndThrowAsync(request, cancellationToken);
 
-        var user = await context.Users
-            .AsNoTracking()
-            .FirstOrDefaultAsync(u => u.Email == request.Email, cancellationToken);
+        var user = await userRepository.GetByEmailAsync(request.Email, cancellationToken);
 
         if (user is null || user.PasswordHash != request.Password)
             throw new ConflictException("Email o contraseña incorrectos.");

@@ -1,112 +1,103 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { api } from "../api/client";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useEvents } from "../hooks/useEvents";
 import { toast } from "../components/toast";
+import LoadingState from "../components/LoadingState";
+import EmptyState from "../components/EmptyState";
+import { formatDateTime } from "../lib/format";
+
+const CARD_DATE_OPTIONS = {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+};
 
 export default function EventsPage() {
-  const navigate = useNavigate();
-  const [events, setEvents] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const { data, events, page, nextPage, prevPage, loading, error } = useEvents();
 
-  const fetchEvents = () => {
-    setLoading(true);
-    setHasError(false);
+  // El hook expone el error; la Page decide cómo comunicarlo (toast).
+  useEffect(() => {
+    if (error) toast.error("Error al cargar los eventos.");
+  }, [error]);
 
-    api.get(`/api/v1/events?page=${page}&pageSize=10`)
-      .then(data => setEvents(Array.isArray(data) ? data : data?.data || []))
-      .catch(err => {
-        setHasError(true);
-        toast.error(`Error al cargar eventos: ${err.message}`);
-      })
-      .finally(() => setLoading(false));
-  };
-
-  useEffect(fetchEvents, [page]);
-
-  if (loading) {
-    return (
-      <div className="text-center py-5">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Cargando...</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (hasError) {
-    return (
-      <div className="text-center py-5">
-        <i className="bi bi-exclamation-triangle fs-1 text-warning"></i>
-        <p className="mt-3 mb-3">No pudimos cargar los eventos.</p>
-        <button className="btn btn-primary" onClick={fetchEvents}>
-          <i className="bi bi-arrow-clockwise me-2"></i>
-          Reintentar
-        </button>
-      </div>
-    );
+  if (loading && !data) {
+    return <LoadingState message="Cargando eventos..." />;
   }
 
   return (
     <div>
-      <h1 className="mb-4">Catálogo de eventos</h1>
+      <div className="d-flex align-items-center mb-4">
+        <i
+          className="bi bi-calendar-event fs-3 me-3"
+          style={{ color: "var(--color-3)" }}
+        ></i>
+        <div>
+          <h2 className="mb-0">Eventos</h2>
+          <small className="text-overridden-muted">
+            {data?.totalCount || 0} evento(s) disponibles
+          </small>
+        </div>
+      </div>
 
       {events.length === 0 ? (
-        <div className="alert alert-info">
-          <i className="bi bi-info-circle me-2"></i>
-          No hay eventos disponibles en este momento.
-        </div>
+        <EmptyState icon="bi-calendar-x" message="No hay eventos disponibles." />
       ) : (
-        <div className="row g-4">
-          {events.map(event => (
-            <div key={event.id} className="col-12 col-sm-6 col-lg-4">
-              <div className="card h-100 shadow-sm">
-                <div className="card-body d-flex flex-column">
-                  <h5 className="card-title">{event.name}</h5>
-                  <p className="text-muted mb-2 small">
-                    <i className="bi bi-calendar-event me-1"></i>
-                    {new Date(event.eventDate).toLocaleDateString("es-AR", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
-                  {event.venue && (
-                    <p className="text-muted mb-3 small">
+        <>
+          <div className="row g-3">
+            {events.map((evt) => (
+              <div key={evt.id} className="col-12 col-md-6 col-lg-4">
+                <div className="card h-100">
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title">{evt.name}</h5>
+                    <p className="card-text text-overridden-muted small mb-1">
                       <i className="bi bi-geo-alt me-1"></i>
-                      {event.venue}
+                      {evt.venue}
                     </p>
-                  )}
-                  <button
-                    className="btn btn-primary mt-auto"
-                    onClick={() => navigate(`/events/${event.id}`)}
-                  >
-                    Ver evento
-                  </button>
+                    <p className="card-text text-overridden-muted small mb-3">
+                      <i className="bi bi-clock me-1"></i>
+                      {formatDateTime(evt.eventDate, CARD_DATE_OPTIONS)}
+                    </p>
+                    <Link
+                      to={`/events/${evt.id}`}
+                      className="btn btn-primary mt-auto"
+                    >
+                      Ver detalle
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
 
-      <div className="d-flex justify-content-center align-items-center gap-3 mt-4 flex-wrap">
-        <button
-          className="btn btn-outline-primary"
-          onClick={() => setPage(p => Math.max(p - 1, 1))}
-          disabled={page === 1}
-        >
-          <i className="bi bi-chevron-left"></i> Anterior
-        </button>
-        <span>Página {page}</span>
-        <button
-          className="btn btn-outline-primary"
-          onClick={() => setPage(p => p + 1)}
-        >
-          Siguiente <i className="bi bi-chevron-right"></i>
-        </button>
-      </div>
+          {data && data.totalPages > 1 && (
+            <nav className="mt-4 d-flex justify-content-center align-items-center gap-3">
+              <button
+                className="btn btn-outline-light btn-sm"
+                disabled={!data.hasPreviousPage || loading}
+                onClick={prevPage}
+              >
+                <i className="bi bi-chevron-left me-1"></i>
+                Anterior
+              </button>
+
+              <span className="small text-overridden-muted">
+                Página {data.page} de {data.totalPages}
+              </span>
+
+              <button
+                className="btn btn-outline-light btn-sm"
+                disabled={!data.hasNextPage || loading}
+                onClick={nextPage}
+              >
+                Siguiente
+                <i className="bi bi-chevron-right ms-1"></i>
+              </button>
+            </nav>
+          )}
+        </>
+      )}
     </div>
   );
 }

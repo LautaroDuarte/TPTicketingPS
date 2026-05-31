@@ -48,13 +48,13 @@
   background: #dc3545;
 }
 
-/* Filas */
+/* Filas — una sola línea, sin wrap. El scroll lo maneja el contenedor. */
 .row-seats {
   display: flex;
   align-items: center;
   gap: 4px;
   margin-bottom: 6px;
-  flex-wrap: wrap;
+  width: max-content;  /* la fila crece según su contenido, no se parte */
 }
 
 .row-label {
@@ -63,6 +63,7 @@
   margin-right: 8px;
   color: var(--text-muted);
   font-size: 14px;
+  flex-shrink: 0;  /* la etiqueta de fila no se comprime */
 }
 
 /* Leyenda */
@@ -82,16 +83,33 @@
   top: 20px;
 }
 
-/* En mobile, deja de ser sticky */
 @media (max-width: 991px) {
   .summary-card {
     position: static;
   }
 }
 
-/* Mapa con scroll horizontal en mobile cuando los asientos no entran */
+/* Mapa con scroll horizontal cuando los asientos no entran */
 .seat-map-container {
   overflow-x: auto;
+}
+
+/* En mobile achicamos un poco los asientos para que entren más por fila.
+   Si aún así no entran, el scroll horizontal del contenedor los desliza. */
+@media (max-width: 576px) {
+  .seat {
+    width: 32px;
+    height: 32px;
+    font-size: 8px;
+  }
+  .seat-label {
+    font-size: 7px;
+  }
+  .row-label {
+    width: 16px;
+    margin-right: 6px;
+    font-size: 12px;
+  }
 }
 
 /* Animación del botón refresh */

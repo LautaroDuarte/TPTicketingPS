@@ -1,12 +1,12 @@
 ﻿namespace TPTicketingPS.Application.Common.Models;
 
 public sealed record PagedResult<T>(
-    IReadOnlyCollection<T> Data,
+    IReadOnlyList<T> Items,
     int Page,
     int PageSize,
-    int TotalItems)
+    int TotalCount)
 {
-    public int TotalPages => (int)Math.Ceiling(TotalItems / (double)PageSize);
+    public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);
     public bool HasNextPage => Page < TotalPages;
     public bool HasPreviousPage => Page > 1;
 }

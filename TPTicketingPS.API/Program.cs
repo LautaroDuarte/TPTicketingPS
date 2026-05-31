@@ -4,7 +4,6 @@ using TPTicketingPS.Application;
 using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Application.Events;
 using TPTicketingPS.Infrastructure;
-using TPTicketingPS.API.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,7 +60,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-// 👇 Activamos la policy que definimos arriba
+
 app.UseCors("AllowFrontend");
 
 // Seed

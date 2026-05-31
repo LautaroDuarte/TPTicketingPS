@@ -1,43 +1,29 @@
-import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { api } from "../api/client";
+import { useLocation, useParams, Link } from "react-router-dom";
+import { useReservation } from "../hooks/useReservation";
+import { getPaymentMethod } from "../constants/paymentMethods";
+import { formatCurrency, formatDateTime } from "../lib/format";
+import LoadingState from "../components/LoadingState";
+import ReservationItems from "../components/reservations/ReservationItems";
 
 export default function ConfirmationPage() {
   const { reservationId } = useParams();
-  const navigate = useNavigate();
   const location = useLocation();
-  const [reservation, setReservation] = useState(location.state?.reservation || null);
-  const [loading, setLoading] = useState(!location.state?.reservation);
 
-  const paymentMethod = location.state?.paymentMethod || "creditCard";
+  // Si venimos de la pantalla de pago ya tenemos la reserva en el state del
+  // router; useReservation la usa como valor inicial y evita un fetch extra.
+  const { reservation, loading } = useReservation(reservationId, {
+    initial: location.state?.reservation || null,
+  });
 
-  // Si entraron directo a la URL sin pasar por payment, fetcheamos
-  useEffect(() => {
-    if (!reservation) {
-      api.get(`/api/v1/reservations/${reservationId}`)
-        .then(setReservation)
-        .finally(() => setLoading(false));
-    }
-  }, [reservationId, reservation]);
+  const method = getPaymentMethod(location.state?.paymentMethod);
 
   if (loading) {
-    return (
-      <div className="text-center py-5">
-        <div className="spinner-border text-primary"></div>
-      </div>
-    );
+    return <LoadingState />;
   }
 
   if (!reservation) {
     return <div className="alert alert-warning">Reserva no encontrada.</div>;
   }
-
-  const methodLabels = {
-    creditCard: { icon: "bi-credit-card-2-front", label: "Tarjeta de crédito" },
-    mercadoPago: { icon: "bi-wallet2", label: "Mercado Pago" },
-    transfer: { icon: "bi-bank", label: "Transferencia" },
-  };
-  const method = methodLabels[paymentMethod] || methodLabels.creditCard;
 
   return (
     <div className="row justify-content-center">
@@ -45,16 +31,12 @@ export default function ConfirmationPage() {
         <div className="text-center mb-4">
           <div
             className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
-            style={{
-              width: 80,
-              height: 80,
-              background: "var(--color-1)",
-            }}
+            style={{ width: 80, height: 80, background: "var(--color-1)" }}
           >
             <i className="bi bi-check-lg text-white" style={{ fontSize: 48 }}></i>
           </div>
           <h2>¡Reserva confirmada!</h2>
-          <p className="text-muted">
+          <p className="text-overridden-muted">
             Te enviamos un email con los detalles de tu compra.
           </p>
         </div>
@@ -69,46 +51,34 @@ export default function ConfirmationPage() {
           <div className="card-body">
             <div className="row mb-3 small">
               <div className="col-6">
-                <span className="text-muted">N° de reserva</span>
+                <span className="text-overridden-muted">N° de reserva</span>
                 <p className="mb-0 font-monospace small">{reservation.id}</p>
               </div>
               <div className="col-6 text-end">
-                <span className="text-muted">Fecha</span>
-                <p className="mb-0">{new Date(reservation.reservedAt).toLocaleString("es-AR")}</p>
+                <span className="text-overridden-muted">Fecha</span>
+                <p className="mb-0">{formatDateTime(reservation.reservedAt)}</p>
               </div>
             </div>
 
             <hr />
 
             <h6 className="mb-3">Asientos</h6>
-            <ul className="list-unstyled">
-              {reservation.items.map(item => (
-                <li key={item.id} className="d-flex justify-content-between mb-2">
-                  <span>
-                    <i className="bi bi-ticket-perforated me-2" style={{ color: "var(--color-3)" }}></i>
-                    {item.sectorName} - Fila {item.rowIdentifier}, Asiento {item.seatNumber}
-                  </span>
-                  <span className="text-muted">
-                    ${item.unitPrice.toLocaleString("es-AR")}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <ReservationItems items={reservation.items} showIcon />
 
             <hr />
 
             <div className="row">
               <div className="col-6">
-                <p className="mb-1 small text-muted">Método de pago</p>
+                <p className="mb-1 small text-overridden-muted">Método de pago</p>
                 <p className="mb-0">
                   <i className={`bi ${method.icon} me-2`}></i>
                   {method.label}
                 </p>
               </div>
               <div className="col-6 text-end">
-                <p className="mb-1 small text-muted">Total pagado</p>
+                <p className="mb-1 small text-overridden-muted">Total pagado</p>
                 <p className="mb-0 fs-4 fw-bold">
-                  ${reservation.totalAmount.toLocaleString("es-AR")}
+                  {formatCurrency(reservation.totalAmount)}
                 </p>
               </div>
             </div>
