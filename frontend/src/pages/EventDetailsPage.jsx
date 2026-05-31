@@ -1,63 +1,56 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../api/client";
+import { useEvent } from "../hooks/useEvent";
 import { toast } from "../components/toast";
+import LoadingState from "../components/LoadingState";
+import ErrorState from "../components/ErrorState";
+import { formatDateTime } from "../lib/format";
 
 export default function EventDetailsPage() {
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
+  const { event, loading, error, refetch } = useEvent(eventId);
 
-  const fetchEvent = () => {
-    setLoading(true);
-    setHasError(false);
-
-    api.get(`/api/v1/events/${eventId}`)
-      .then(setEvent)
-      .catch(err => {
-        setHasError(true);
-        if (err.status === 404) {
-          toast.warning("Evento no encontrado");
-        } else {
-          toast.error(`Error al cargar el evento: ${err.message}`);
-        }
-      })
-      .finally(() => setLoading(false));
-  };
-
-  useEffect(fetchEvent, [eventId]);
+  // Diferenciamos 404 (aviso) del resto (error). El hook solo trae el error.
+  useEffect(() => {
+    if (!error) return;
+    if (error.status === 404) {
+      toast.warning("Evento no encontrado");
+    } else {
+      toast.error(`Error al cargar el evento: ${error.message}`);
+    }
+  }, [error]);
 
   if (loading) {
-    return (
-      <div className="text-center py-5">
-        <div className="spinner-border text-primary" role="status"></div>
-      </div>
-    );
+    return <LoadingState />;
   }
 
-  if (hasError || !event) {
+  if (error || !event) {
+    const isNotFound = error?.status === 404 || !event;
     return (
-      <div className="text-center py-5">
-        <i className="bi bi-exclamation-circle fs-1 text-warning"></i>
-        <p className="mt-3 mb-3">
-          {hasError ? "No pudimos cargar el evento." : "Evento no encontrado."}
-        </p>
-        <button
-          className="btn btn-outline-primary me-2"
-          onClick={() => navigate("/events")}
-        >
-          <i className="bi bi-arrow-left me-2"></i>
-          Volver a eventos
-        </button>
-        {hasError && (
-          <button className="btn btn-primary" onClick={fetchEvent}>
-            <i className="bi bi-arrow-clockwise me-2"></i>
-            Reintentar
-          </button>
-        )}
-      </div>
+      <ErrorState
+        message={isNotFound ? "Evento no encontrado." : "No pudimos cargar el evento."}
+        actions={
+          <>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => navigate("/events")}
+            >
+              <i className="bi bi-arrow-left me-2"></i>
+              Volver a eventos
+            </button>
+            {!isNotFound && (
+              <button
+                className="btn btn-primary"
+                onClick={() => refetch().catch(() => {})}
+              >
+                <i className="bi bi-arrow-clockwise me-2"></i>
+                Reintentar
+              </button>
+            )}
+          </>
+        }
+      />
     );
   }
 
@@ -77,19 +70,27 @@ export default function EventDetailsPage() {
           <div className="row g-3 mb-4">
             <div className="col-12 col-md-6">
               <p className="mb-2">
-                <i className="bi bi-calendar-event me-2" style={{ color: "var(--color-3)" }}></i>
-                <strong>Fecha:</strong>{" "}
-                {new Date(event.eventDate).toLocaleString("es-AR")}
+                <i
+                  className="bi bi-calendar-event me-2"
+                  style={{ color: "var(--color-3)" }}
+                ></i>
+                <strong>Fecha:</strong> {formatDateTime(event.eventDate)}
               </p>
               {event.venue && (
                 <p className="mb-2">
-                  <i className="bi bi-geo-alt me-2" style={{ color: "var(--color-3)" }}></i>
+                  <i
+                    className="bi bi-geo-alt me-2"
+                    style={{ color: "var(--color-3)" }}
+                  ></i>
                   <strong>Lugar:</strong> {event.venue}
                 </p>
               )}
               {event.status && (
                 <p className="mb-2">
-                  <i className="bi bi-info-circle me-2" style={{ color: "var(--color-3)" }}></i>
+                  <i
+                    className="bi bi-info-circle me-2"
+                    style={{ color: "var(--color-3)" }}
+                  ></i>
                   <strong>Estado:</strong>{" "}
                   <span className="badge bg-primary">{event.status}</span>
                 </p>

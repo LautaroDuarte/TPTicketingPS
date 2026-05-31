@@ -1,58 +1,48 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { api } from "../api/client";
+import { useEvents } from "../hooks/useEvents";
 import { toast } from "../components/toast";
+import LoadingState from "../components/LoadingState";
+import EmptyState from "../components/EmptyState";
+import { formatDateTime } from "../lib/format";
+
+const CARD_DATE_OPTIONS = {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+};
 
 export default function EventsPage() {
-  const [data, setData] = useState(null);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const pageSize = 9; // múltiplo de 3 para que la grilla quede pareja
+  const { data, events, page, nextPage, prevPage, loading, error } = useEvents();
 
+  // El hook expone el error; la Page decide cómo comunicarlo (toast).
   useEffect(() => {
-    loadEvents();
-  }, [page]);
-
-  const loadEvents = async () => {
-    setLoading(true);
-    try {
-      const result = await api.get(
-        `/api/v1/events?page=${page}&pageSize=${pageSize}&status=Active`
-      );
-      setData(result);
-    } catch (err) {
-      toast.error("Error al cargar los eventos.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    if (error) toast.error("Error al cargar los eventos.");
+  }, [error]);
 
   if (loading && !data) {
-    return (
-      <div className="text-center py-5">
-        <div className="spinner-border" role="status"></div>
-        <p className="mt-2">Cargando eventos...</p>
-      </div>
-    );
+    return <LoadingState message="Cargando eventos..." />;
   }
-
-  const events = data?.items || [];
 
   return (
     <div>
       <div className="d-flex align-items-center mb-4">
-        <i className="bi bi-calendar-event fs-3 me-3" style={{ color: "var(--color-3)" }}></i>
+        <i
+          className="bi bi-calendar-event fs-3 me-3"
+          style={{ color: "var(--color-3)" }}
+        ></i>
         <div>
           <h2 className="mb-0">Eventos</h2>
-          <small className="text-overridden-muted">{data?.totalCount || 0} evento(s) disponibles</small>
+          <small className="text-overridden-muted">
+            {data?.totalCount || 0} evento(s) disponibles
+          </small>
         </div>
       </div>
 
       {events.length === 0 ? (
-        <div className="text-center py-5">
-          <i className="bi bi-calendar-x fs-1 text-overridden-muted d-block mb-2"></i>
-          <p className="text-overridden-muted">No hay eventos disponibles.</p>
-        </div>
+        <EmptyState icon="bi-calendar-x" message="No hay eventos disponibles." />
       ) : (
         <>
           <div className="row g-3">
@@ -67,13 +57,7 @@ export default function EventsPage() {
                     </p>
                     <p className="card-text text-overridden-muted small mb-3">
                       <i className="bi bi-clock me-1"></i>
-                      {new Date(evt.eventDate).toLocaleString("es-AR", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                      {formatDateTime(evt.eventDate, CARD_DATE_OPTIONS)}
                     </p>
                     <Link
                       to={`/events/${evt.id}`}
@@ -87,13 +71,12 @@ export default function EventsPage() {
             ))}
           </div>
 
-          {/* Controles de paginación */}
           {data && data.totalPages > 1 && (
             <nav className="mt-4 d-flex justify-content-center align-items-center gap-3">
               <button
                 className="btn btn-outline-light btn-sm"
                 disabled={!data.hasPreviousPage || loading}
-                onClick={() => setPage((p) => p - 1)}
+                onClick={prevPage}
               >
                 <i className="bi bi-chevron-left me-1"></i>
                 Anterior
@@ -106,7 +89,7 @@ export default function EventsPage() {
               <button
                 className="btn btn-outline-light btn-sm"
                 disabled={!data.hasNextPage || loading}
-                onClick={() => setPage((p) => p + 1)}
+                onClick={nextPage}
               >
                 Siguiente
                 <i className="bi bi-chevron-right ms-1"></i>

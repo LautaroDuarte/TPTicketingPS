@@ -52,7 +52,7 @@ public class CreateReservation(
         await auditLogger.LogAndSaveAsync(
             action: AuditActions.ReserveAttempt,
             entityType: AuditEntityTypes.Reservation,
-            entityId: string.Join(",", request.SeatIds),
+            entityId: request.EventId.ToString(),
             userId: userId,
             details: new { request.EventId, request.SeatIds },
             cancellationToken: cancellationToken);
@@ -88,7 +88,7 @@ public class CreateReservation(
             await auditLogger.LogAndSaveAsync(
                 action: AuditActions.ReserveFailedUnavailable,
                 entityType: AuditEntityTypes.Reservation,
-                entityId: string.Join(",", request.SeatIds),
+                entityId: request.EventId.ToString(),
                 userId: userId,
                 details: new { request.EventId, request.SeatIds, reason = "unavailable_after_retries" },
                 cancellationToken: cancellationToken);
