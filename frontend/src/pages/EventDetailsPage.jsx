@@ -100,7 +100,7 @@ export default function EventDetailsPage() {
           {event.description && (
             <>
               <h5>Descripción</h5>
-              <p className="text-muted">{event.description}</p>
+              <p className="text-overridden-muted">{event.description}</p>
             </>
           )}
 

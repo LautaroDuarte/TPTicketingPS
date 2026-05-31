@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 using TPTicketingPS.Application.Common.Auditing;
 using TPTicketingPS.Application.Common.Concurrency;
 using TPTicketingPS.Application.Common.Exceptions;
@@ -20,6 +19,10 @@ namespace TPTicketingPS.Application.Reservations.UseCases.CreateReservation;
 /// </summary>
 public class CreateReservation(
     IAppDbContext context,
+    IReservationRepository reservationRepository,
+    ISeatRepository seatRepository,
+    IUserRepository userRepository,
+    IEventRepository eventRepository,
     IValidator<CreateReservationRequest> validator,
     ICurrentUser currentUser,
     IAuditLogger auditLogger) : ICreateReservation
@@ -38,19 +41,18 @@ public class CreateReservation(
                 ["X-User-Id"] = new[] { "Falta el header X-User-Id." }
             });
 
-        // 3. Validar que el usuario exista (FK del AuditLog requiere userId válido)
-        var user = await context.Users
-            .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken)
-            ?? throw new NotFoundException(nameof(User), userId);
+        // 3. Validar que el usuario exista 
+        var userExists = await userRepository.ExistsAsync(
+            u => u.Id == userId, cancellationToken);
+        if (!userExists)
+            throw new NotFoundException(nameof(User), userId);
 
-        if (!user.IsActive)
-            throw new ConflictException("El usuario está inactivo.");
 
         // 4. Auditar el intento (queda registrado aunque falle)
         await auditLogger.LogAndSaveAsync(
             action: AuditActions.ReserveAttempt,
             entityType: AuditEntityTypes.Reservation,
-            entityId: "pending",
+            entityId: string.Join(",", request.SeatIds),
             userId: userId,
             details: new { request.EventId, request.SeatIds },
             cancellationToken: cancellationToken);
@@ -62,7 +64,7 @@ public class CreateReservation(
                 () => TryCreateReservationAsync(request, userId, cancellationToken),
                 cancellationToken);
         }
-        catch (DbUpdateConcurrencyException)
+        catch (Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException)
         {
             // limpiamos el ChangeTracker para evitar que EF intente seguir guardando entidades con versiones desactualizadas
             context.ChangeTracker.Clear();
@@ -80,6 +82,18 @@ public class CreateReservation(
             throw new ConflictException(
                 "No pudimos completar la reserva por alta demanda. Intentá nuevamente.");
         }
+        catch (ConflictException)
+        {
+            context.ChangeTracker.Clear();
+            await auditLogger.LogAndSaveAsync(
+                action: AuditActions.ReserveFailedUnavailable,
+                entityType: AuditEntityTypes.Reservation,
+                entityId: string.Join(",", request.SeatIds),
+                userId: userId,
+                details: new { request.EventId, request.SeatIds, reason = "unavailable_after_retries" },
+                cancellationToken: cancellationToken);
+            throw;
+        }
     }
 
     /// <summary>
@@ -93,108 +107,82 @@ public class CreateReservation(
     {
         await using var transaction = await context.BeginTransactionAsync(cancellationToken);
 
-        // Validar evento
-        var @event = await context.Events
-            .FirstOrDefaultAsync(e => e.Id == request.EventId, cancellationToken)
-            ?? throw new NotFoundException(nameof(Event), request.EventId);
-
-        // Cargar seats con traking
-        // y ordenados por Id para minimizar deadlocks
-        var seats = await context.Seats
-            .Include(s => s.Sector)
-            .Where(s => request.SeatIds.Contains(s.Id))
-            .OrderBy(s => s.Id)
-            .ToListAsync(cancellationToken);
-
-        // Verificar que existan todos los pedidos
-        if (seats.Count != request.SeatIds.Count)
+        try
         {
-            var foundIds = seats.Select(s => s.Id).ToHashSet();
-            var missing = request.SeatIds.Where(id => !foundIds.Contains(id)).ToList();
+            // Cargar seats
+            var seats = await seatRepository.GetByIdsWithSectorAsync(request.SeatIds, cancellationToken);
 
-            await auditLogger.LogAndSaveAsync(
-                action: AuditActions.ReserveFailedUnavailable,
-                entityType: AuditEntityTypes.Reservation,
-                entityId: "n/a",
-                userId: userId,
-                details: new { reason = "missing_seats", missing },
-                cancellationToken: cancellationToken);
+            ValidateSeatsForReservation(seats, request);
 
-            throw new NotFoundException(nameof(Seat), string.Join(", ", missing));
-        }
+            await ValidateMaxReservationsPerUser(userId, request.EventId, seats, cancellationToken);
 
-        // Pertenecen al evento
-        if (seats.Any(s => s.Sector!.EventId != request.EventId))
-        {
-            throw new Common.Exceptions.ValidationException(new Dictionary<string, string[]>
+            var reservation = new Reservation(userId);
+
+            foreach (var seat in seats)
             {
-                ["SeatIds"] = new[] { "Algunos asientos no pertenecen al evento indicado." }
-            });
-        }
+                seat.Reserve(reservation.Id);
+                reservation.AddItem(new ReservationItem(reservation.Id, seat.Id, seat.Sector!.Price));
+            }
 
-        // Disponibilidad
-        var unavailable = seats.Where(s => s.Status != SeatStatus.Available).ToList();
-        if (unavailable.Count > 0)
-        {
-            await auditLogger.LogAndSaveAsync(
-                action: AuditActions.ReserveFailedUnavailable,
+            await reservationRepository.AddAsync(reservation, cancellationToken);
+
+            auditLogger.Log(
+                action: AuditActions.ReserveSuccess,
                 entityType: AuditEntityTypes.Reservation,
-                entityId: "n/a",
+                entityId: reservation.Id.ToString(),
                 userId: userId,
                 details: new
                 {
-                    reason = "unavailable_seats",
-                    seats = unavailable.Select(s => new { s.Id, s.Status })
-                },
-                cancellationToken: cancellationToken);
+                    reservationsId = reservation.Id,
+                    seatIds = request.SeatIds
+                });
 
-            throw new ConflictException(
-                $"Los siguientes asientos no están disponibles: " +
-                string.Join(", ", unavailable.Select(s => s.Id)));
+            await context.SaveChangesAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
+
+            return reservation.ToDto(DateTime.UtcNow);
         }
-
-        // Límite por usuario
-        var alreadyReserved = await context.Reservations
-            .Where(r => r.UserId == userId
-                        && (r.Status == ReservationStatus.Pending || r.Status == ReservationStatus.Paid)
-                        && r.Items.Any(i => i.Seat!.Sector!.EventId == request.EventId))
-            .SelectMany(r => r.Items)
-            .CountAsync(cancellationToken);
-
-        if (alreadyReserved + seats.Count > @event.MaxReservationsPerUser)
+        catch (Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException)
         {
-            throw new ConflictException(
-                $"Excede el máximo de {@event.MaxReservationsPerUser} reservas por usuario para este evento.");
+            await transaction.RollbackAsync(cancellationToken);
+            throw;
         }
-
-        // Crear reserva e ítems, cambiar estado de seats
-        var reservation = new Reservation(userId);
-
-        foreach (var seat in seats)
+        catch
         {
-            seat.Reserve(reservation.Id);
-            reservation.AddItem(new ReservationItem(reservation.Id, seat.Id, seat.Sector!.Price));
+            await transaction.RollbackAsync(cancellationToken);
+            throw;
         }
+    }
 
-        context.Reservations.Add(reservation);
+    private static void ValidateSeatsForReservation(
+        List<Seat> seats,
+        CreateReservationRequest request)
+    {
+        if (seats.Count != request.SeatIds.Count)
+            throw new NotFoundException("Uno o más asientos no existen.", seats);
 
-        // Auditar éxito (mismo SaveChanges que la reserva → atómico)
-        auditLogger.Log(
-            action: AuditActions.ReserveSuccess,
-            entityType: AuditEntityTypes.Reservation,
-            entityId: reservation.Id.ToString(),
-            userId: userId,
-            details: new
-            {
-                seatIds = seats.Select(s => s.Id),
-                totalAmount = reservation.TotalAmount,
-                expiresAt = reservation.ExpiresAt
-            });
+        if (seats.Any(s => s.Sector!.EventId != request.EventId))
+            throw new ConflictException("Algún asiento no pertenece al evento indicado.");
 
-        await context.SaveChangesAsync(cancellationToken);
+        var unavailable = seats.Where(s => s.Status != SeatStatus.Available).ToList();
+        if (unavailable.Count > 0)
+            throw new ConflictException("Uno o más asientos ya no están disponibles.");
+    }
 
-        await transaction.CommitAsync(cancellationToken);
+    private async Task ValidateMaxReservationsPerUser(
+        int userId,
+        int eventId,
+        List<Seat> seats,
+        CancellationToken cancellationToken)
+    {
+        var evt = await eventRepository.GetByIdAsync(eventId, cancellationToken)
+            ?? throw new NotFoundException(nameof(Event), eventId);
 
-        return reservation.ToDto(DateTime.UtcNow);
+        var activeCount = await reservationRepository.CountActiveByUserAndEventAsync(
+            userId, eventId, cancellationToken);
+
+        if (activeCount + seats.Count > evt.MaxReservationsPerUser)
+            throw new ConflictException(
+                $"Superás el máximo de {evt.MaxReservationsPerUser} reservas para este evento.");
     }
 }

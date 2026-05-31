@@ -4,7 +4,7 @@ using TPTicketingPS.Domain.Entities;
 
 namespace TPTicketingPS.Application.Events;
 
-public class CreateEvent(IAppDbContext context) : ICreateEvent
+public class CreateEvent(IAppDbContext context, IEventRepository eventRepository) : ICreateEvent
 {
     public async Task<int> ExecuteAsync(
         CreateEventRequest request,
@@ -18,7 +18,7 @@ public class CreateEvent(IAppDbContext context) : ICreateEvent
             request.MaxReservationsPerUser ?? int.MaxValue
         );
 
-        context.Events.Add(ev);
+        await eventRepository.AddAsync(ev, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
 
         return ev.Id;

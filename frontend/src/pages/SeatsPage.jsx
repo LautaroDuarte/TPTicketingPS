@@ -226,7 +226,7 @@ export default function SeatsPage() {
             </div>
             <div className="card-body">
               {selectedSeats.length === 0 ? (
-                <p className="text-muted small mb-0">
+                <p className="text-overridden-muted small mb-0">
                   No hay asientos seleccionados.
                 </p>
               ) : (
@@ -237,7 +237,7 @@ export default function SeatsPage() {
                         <span>
                           {seat.sectorName} {seat.rowIdentifier}{seat.seatNumber}
                         </span>
-                        <span className="text-muted">
+                        <span className="text-overridden-muted">
                           ${seat.price.toLocaleString("es-AR")}
                         </span>
                       </li>

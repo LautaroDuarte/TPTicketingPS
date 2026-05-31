@@ -42,7 +42,7 @@ export default function LoginPage() {
                 style={{ fontSize: 48, color: "var(--color-3)" }}
               ></i>
               <h3 className="mt-2">Ticketing</h3>
-              <p className="text-muted small">Iniciá sesión para continuar</p>
+              <p className="text-overridden-muted small">Iniciá sesión para continuar</p>
             </div>
 
             <form onSubmit={handleSubmit}>

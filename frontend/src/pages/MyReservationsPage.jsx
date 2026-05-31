@@ -68,14 +68,14 @@ export default function MyReservationsPage() {
         <i className="bi bi-ticket fs-3 me-3" style={{ color: "var(--color-3)" }}></i>
         <div>
           <h2 className="mb-0">Mis reservas</h2>
-          <small className="text-muted">{reservations.length} reserva(s)</small>
+          <small className="text-overridden-muted">{reservations.length} reserva(s)</small>
         </div>
       </div>
 
       {reservations.length === 0 ? (
         <div className="text-center py-5">
-          <i className="bi bi-inbox fs-1 text-muted d-block mb-2"></i>
-          <p className="text-muted">No tenés reservas todavía.</p>
+          <i className="bi bi-inbox fs-1 text-overridden-muted d-block mb-2"></i>
+          <p className="text-overridden-muted">No tenés reservas todavía.</p>
           <Link className="btn btn-primary" to="/events">
             <i className="bi bi-search me-1"></i>
             Explorar eventos
@@ -107,17 +107,17 @@ export default function MyReservationsPage() {
                             </span>
                           )}
                         </div>
-                        <small className="text-muted d-block">
+                        <small className="text-overridden-muted d-block">
                           Reservada el {formatDate(r.reservedAt)}
                         </small>
-                        <small className="text-muted d-block">
+                        <small className="text-overridden-muted d-block">
                           ID: <code className="small">{r.id.slice(0, 8)}...</code>
                         </small>
                       </div>
 
                       {/* Asientos */}
                       <div className="col-md-4">
-                        <small className="text-muted d-block mb-1">Asientos:</small>
+                        <small className="text-overridden-muted d-block mb-1">Asientos:</small>
                         <div className="d-flex flex-wrap gap-1">
                           {(r.items || []).map((item) => (
                             <span

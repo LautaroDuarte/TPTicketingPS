@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TPTicketingPS.Application.Common.Models;
 using TPTicketingPS.Application.Events;
 using TPTicketingPS.Application.Events.Dtos;
 using TPTicketingPS.Application.Seats;
@@ -8,7 +9,6 @@ namespace TPTicketingPS.API.Controllers.V1
 {
     [ApiController]
     [Route("api/v1/events")]
-    [Produces("application/json")]
     public class EventsController : ControllerBase
     {
         private readonly IGetEvents _getEvents;
@@ -26,7 +26,8 @@ namespace TPTicketingPS.API.Controllers.V1
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEvents(
+        [ProducesResponseType(typeof(PagedResult<EventSummaryDto>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<PagedResult<EventSummaryDto>>> GetEvents(
             [FromQuery] EventQueryParameters parameters,
             CancellationToken cancellationToken)
         {

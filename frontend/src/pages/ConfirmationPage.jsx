@@ -54,7 +54,7 @@ export default function ConfirmationPage() {
             <i className="bi bi-check-lg text-white" style={{ fontSize: 48 }}></i>
           </div>
           <h2>¡Reserva confirmada!</h2>
-          <p className="text-muted">
+          <p className="text-overridden-muted">
             Te enviamos un email con los detalles de tu compra.
           </p>
         </div>
@@ -69,11 +69,11 @@ export default function ConfirmationPage() {
           <div className="card-body">
             <div className="row mb-3 small">
               <div className="col-6">
-                <span className="text-muted">N° de reserva</span>
+                <span className="text-overridden-muted">N° de reserva</span>
                 <p className="mb-0 font-monospace small">{reservation.id}</p>
               </div>
               <div className="col-6 text-end">
-                <span className="text-muted">Fecha</span>
+                <span className="text-overridden-muted">Fecha</span>
                 <p className="mb-0">{new Date(reservation.reservedAt).toLocaleString("es-AR")}</p>
               </div>
             </div>
@@ -88,7 +88,7 @@ export default function ConfirmationPage() {
                     <i className="bi bi-ticket-perforated me-2" style={{ color: "var(--color-3)" }}></i>
                     {item.sectorName} - Fila {item.rowIdentifier}, Asiento {item.seatNumber}
                   </span>
-                  <span className="text-muted">
+                  <span className="text-overridden-muted">
                     ${item.unitPrice.toLocaleString("es-AR")}
                   </span>
                 </li>
@@ -99,14 +99,14 @@ export default function ConfirmationPage() {
 
             <div className="row">
               <div className="col-6">
-                <p className="mb-1 small text-muted">Método de pago</p>
+                <p className="mb-1 small text-overridden-muted">Método de pago</p>
                 <p className="mb-0">
                   <i className={`bi ${method.icon} me-2`}></i>
                   {method.label}
                 </p>
               </div>
               <div className="col-6 text-end">
-                <p className="mb-1 small text-muted">Total pagado</p>
+                <p className="mb-1 small text-overridden-muted">Total pagado</p>
                 <p className="mb-0 fs-4 fw-bold">
                   ${reservation.totalAmount.toLocaleString("es-AR")}
                 </p>

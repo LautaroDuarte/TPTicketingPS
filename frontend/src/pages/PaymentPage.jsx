@@ -141,7 +141,7 @@ const handleCancelReservation = async () => {
                   <span>
                     {item.sectorName} - Fila {item.rowIdentifier}, Asiento {item.seatNumber}
                   </span>
-                  <span className="text-muted">
+                  <span className="text-overridden-muted">
                     ${item.unitPrice.toLocaleString("es-AR")}
                   </span>
                 </li>
@@ -353,7 +353,7 @@ function PaymentOption({ value, selected, onSelect, icon, label, description }) 
         <div className="card-body text-center">
           <i className={`bi ${icon} fs-1 mb-2`} style={{ color: isSelected ? "var(--color-3)" : "var(--text-muted)" }}></i>
           <h6 className="mb-1">{label}</h6>
-          <small className="text-muted">{description}</small>
+          <small className="text-overridden-muted">{description}</small>
         </div>
       </div>
     </div>
@@ -391,7 +391,7 @@ function MercadoPagoForm() {
         <input type="email" className="form-control" placeholder="tu@email.com" />
       </div>
       <div className="col-12">
-        <p className="text-muted small mb-0">
+        <p className="text-overridden-muted small mb-0">
           Vas a ser redirigido a Mercado Pago para completar el pago.
         </p>
       </div>

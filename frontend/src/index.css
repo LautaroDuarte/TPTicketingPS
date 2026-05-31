@@ -5,14 +5,12 @@
   --color-1: #2286CD;  /* Azul principal */
   --color-2: #3675A2;  /* Azul medio */
   --color-3: #0090F8;  /* Azul brillante (acentos, hover) */
-  --color-4: #3C5F78;  /* Azul grisáceo */
-  --color-5: #34434D;  /* Gris azulado */
+  --color-5: #34434D;  /* Gris azulado (fondo cards) */
   --color-6: #2B2F33;  /* Casi negro (fondo) */
-  --color-7: #1dbe96;  /* Verde suave (seleccion asiento)*/
+  --color-7: #1dbe96;  /* Verde suave (selección asiento) */
 
   /* Texto */
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.75);
   --text-muted: rgba(255, 255, 255, 0.5);
 
   /* Fondos */
@@ -43,8 +41,8 @@ main {
 }
 
 /* Navbar */
-.navbar.bg-primary {
-  background-color: var(--color-2) !important;
+.navbar.navbar.bg-primary {
+  background-color: var(--color-2);
   border-bottom: 1px solid var(--border-card);
 }
 
@@ -96,9 +94,9 @@ main {
   color: var(--color-1);
 }
 
-/* Badges */
-.badge.bg-primary {
-  background-color: var(--color-1) !important;
+/* Badges — doble clase para superar especificidad de Bootstrap */
+.badge.badge.bg-primary {
+  background-color: var(--color-1);
 }
 
 /* Forms en tema oscuro */
@@ -126,13 +124,13 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-.text-muted {
-  color: var(--text-muted) !important;
+.text-overridden-muted{
+  color: var(--text-muted);
 }
 
 /* Spinner */
 .spinner-border.text-primary {
-  color: var(--color-3) !important;
+  color: var(--color-3);
 }
 
 /* Alerts en tema oscuro */
@@ -168,14 +166,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Ajuste de posición de los toasts */
-.toastify {
-  margin-top: 70px !important;  /* deja espacio bajo el navbar */
+.toastify.toastify {
+  margin-top: 70px;
 }
 
 @media (max-width: 576px) {
-  .toastify {
-    right: 10px !important;
-    left: 10px !important;
-    margin-top: 70px !important;
+  .toastify.toastify {
+    right: 10px;
+    left: 10px;
+    margin-top: 70px;
   }
 }

@@ -5,6 +5,7 @@ using TPTicketingPS.Application.Common.Interfaces;
 using TPTicketingPS.Infrastructure.Auditing;
 using TPTicketingPS.Infrastructure.Persistence;
 using TPTicketingPS.Infrastructure.BackgroundJobs;
+using TPTicketingPS.Infrastructure.Persistence.Repositories;
 
 namespace TPTicketingPS.Infrastructure;
 
@@ -29,6 +30,12 @@ public static class DependencyInjection
 
         services.AddScoped<IAuditLogger, AuditLogger>();
         services.AddHostedService<ReservationExpirationJob>();
+
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped<IReservationRepository, ReservationRepository>();
+        services.AddScoped<ISeatRepository, SeatRepository>();
+        services.AddScoped<IEventRepository, EventRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }

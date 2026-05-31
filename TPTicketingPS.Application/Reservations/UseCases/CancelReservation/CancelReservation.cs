@@ -14,6 +14,7 @@ namespace TPTicketingPS.Application.Reservations.UseCases.CancelReservation;
 public class CancelReservation(
     IAppDbContext context,
     ICurrentUser currentUser,
+    IReservationRepository reservationRepository,
     IAuditLogger auditLogger) : ICancelReservation
 {
     public async Task ExecuteAsync(
@@ -27,10 +28,7 @@ public class CancelReservation(
             });
 
         // Cargar reserva con items y seats
-        var reservation = await context.Reservations
-            .Include(r => r.Items)
-                .ThenInclude(i => i.Seat!)
-            .FirstOrDefaultAsync(r => r.Id == reservationId, cancellationToken)
+        var reservation = await reservationRepository.GetByIdWithItemsAndSeatsAsync(reservationId, cancellationToken)
             ?? throw new NotFoundException(nameof(Reservation), reservationId);
 
         // Validaciones
