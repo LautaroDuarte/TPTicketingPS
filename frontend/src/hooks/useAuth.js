@@ -52,6 +52,7 @@ export function useAuth() {
   return {
     user,
     isAuthenticated: Boolean(user.id),
+    isAdmin: user.role === "admin",
     loading,
     login,
     logout,

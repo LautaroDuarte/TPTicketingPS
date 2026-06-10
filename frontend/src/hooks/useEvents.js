@@ -5,7 +5,7 @@ import { eventsService } from "../services/eventsService";
  * Catálogo paginado de eventos. Expone los datos, el estado de carga/error
  * y los controles de paginación. La Page solo decide cómo mostrarlo.
  */
-export function useEvents(initialPage = 1, pageSize = 9) {
+export function useEvents(initialPage = 1, pageSize = 5) {
   const [page, setPage] = useState(initialPage);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

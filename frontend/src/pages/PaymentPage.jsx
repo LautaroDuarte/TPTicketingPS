@@ -9,6 +9,7 @@ import { toast } from "../components/toast";
 import { parseApiError } from "../lib/errors";
 import { formatCurrency } from "../lib/format";
 import { MERCADO_PAGO_DEFAULTS } from "../constants/paymentMethods";
+import { TRANSFER_DEFAULTS } from "../constants/paymentMethods";
 import LoadingState from "../components/LoadingState";
 import Spinner from "../components/Spinner";
 import ConfirmModal from "../components/ConfirmModal";
@@ -29,7 +30,7 @@ export default function PaymentPage() {
   const { cancel, cancelling } = useCancelReservation(reservationId);
   const { card, setField } = useCardForm();
 
-  const [paymentMethod, setPaymentMethod] = useState("creditCard");
+  const [paymentMethod, setPaymentMethod] = useState("creditCard"); 
   const [showCancelModal, setShowCancelModal] = useState(false);
 
   // Construimos el payload según el método. Para Mercado Pago usamos datos
@@ -37,6 +38,9 @@ export default function PaymentPage() {
   const buildPayload = () => {
     if (paymentMethod === "mercadoPago") {
       return { paymentMethod, ...MERCADO_PAGO_DEFAULTS };
+    }
+    if (paymentMethod === "transfer") {
+      return { paymentMethod, ...TRANSFER_DEFAULTS };
     }
     return { paymentMethod, ...card };
   };
