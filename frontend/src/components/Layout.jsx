@@ -50,6 +50,13 @@ export default function Layout({ children }) {
                     </Link>
                   </li>
                   <li><hr className="dropdown-divider" /></li>
+                  {userRole === "admin" && (
+                    <li>
+                      <Link className="dropdown-item" to="/events/create">
+                        <i className="bi bi-calendar-plus me-2"></i>Crear evento
+                      </Link>
+                    </li>
+                  )}
                   <li>
                     <button className="dropdown-item text-danger" onClick={handleLogout}>
                       <i className="bi bi-box-arrow-right me-2"></i>Cerrar sesión

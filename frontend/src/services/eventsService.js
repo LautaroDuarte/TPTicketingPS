@@ -6,4 +6,6 @@ export const eventsService = {
     api.get(`/api/v1/events?page=${page}&pageSize=${pageSize}&status=${status}`),
 
   getById: (eventId) => api.get(`/api/v1/events/${eventId}`),
+  
+  create: (payload) => api.post("/api/v1/events", payload),
 };

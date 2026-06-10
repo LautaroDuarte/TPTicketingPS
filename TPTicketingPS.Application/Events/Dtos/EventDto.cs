@@ -22,7 +22,14 @@ public sealed record CreateEventRequest(
     DateTime EventDate,
     string Venue,
     string? Description,
-    int? MaxReservationsPerUser);
+    int? MaxReservationsPerUser,
+    List<CreateSectorRequest> Sectors);
+
+public sealed record CreateSectorRequest(
+    string Name,
+    decimal Price,
+    int Rows,
+    int SeatsPerRow);
 
 public sealed record EventQueryParameters
 {

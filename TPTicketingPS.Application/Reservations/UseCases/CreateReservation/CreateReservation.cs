@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using TPTicketingPS.Application.Common.Auditing;
 using TPTicketingPS.Application.Common.Concurrency;
 using TPTicketingPS.Application.Common.Exceptions;
@@ -120,7 +121,7 @@ public class CreateReservation(
 
             foreach (var seat in seats)
             {
-                seat.Reserve(reservation.Id);
+                seat.Reserve(reservation.Id); // lo marca como reservado
                 reservation.AddItem(new ReservationItem(reservation.Id, seat.Id, seat.Sector!.Price));
             }
 
@@ -136,6 +137,8 @@ public class CreateReservation(
                     reservationsId = reservation.Id,
                     seatIds = request.SeatIds
                 });
+
+            //throw new DbUpdateConcurrencyException(); // FORZAMOS CONFLICTO PARA PROBAR EL RETRY
 
             await context.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);

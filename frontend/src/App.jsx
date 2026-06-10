@@ -7,6 +7,7 @@ import ConfirmationPage from "./pages/ConfirmationPage";
 import LoginPage from "./pages/LoginPage";
 import Layout from "./components/Layout";
 import MyReservationsPage from "./pages/MyReservationsPage";
+import CreateEventPage from "./pages/CreateEventPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Navigate to="/events" replace />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/events" element={<EventsPage />} />
+        <Route path="/events/create" element={<CreateEventPage />} />
         <Route path="/events/:eventId" element={<EventDetailsPage />} />
         <Route path="/events/:eventId/seats" element={<SeatsPage />} />
         <Route path="/reservations/:reservationId/payment" element={<PaymentPage />} />

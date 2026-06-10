@@ -12,7 +12,6 @@ public class Sector : BaseEntity
 
     public int Capacity { get; private set; }
 
-    // navegación
     public Event? Event { get; private set; }
 
     public List<Seat> Seats { get; private set; } = new();
